@@ -1,0 +1,68 @@
+/* Theme Variables */
+
+:root {
+  /* Light Theme Colors */
+  --color-background: 248 250 252;
+  --color-foreground: 15 23 42;
+  --color-card: 255 255 255;
+  --color-card-foreground: 15 23 42;
+  --color-border: 226 232 240;
+  --color-input: 226 232 240;
+  
+  /* Chart Colors */
+  --chart-1: 14 165 233;
+  --chart-2: 139 92 246;
+  --chart-3: 6 182 212;
+  --chart-4: 168 139 250;
+  --chart-5: 100 116 139;
+}
+
+.dark {
+  /* Dark Theme Colors */
+  --color-background: 2 6 23;
+  --color-foreground: 248 250 252;
+  --color-card: 15 23 42;
+  --color-card-foreground: 248 250 252;
+  --color-border: 51 65 85;
+  --color-input: 51 65 85;
+}
+
+/* Custom Theme Utilities */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #06b6d4 0%, #a78bfa 100%);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, #38bdf8 0%, #c4b5fd 100%);
+}
+
+/* Mesh Gradient Background */
+.mesh-gradient {
+  background: 
+    radial-gradient(at 40% 20%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(168, 139, 250, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+}
+
+.dark .mesh-gradient {
+  background: 
+    radial-gradient(at 40% 20%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(168, 139, 250, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+}
+
