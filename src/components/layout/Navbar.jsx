@@ -62,7 +62,7 @@ const Navbar = ({ onMenuClick }) => {
   ];
 
   return (
-    <nav className="h-14 bg-white border-b border-gray-200 px-4 lg:px-6 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+    <nav className="h-12 bg-white border-b border-gray-200 px-4 lg:px-6 flex items-center justify-between sticky top-0 z-40 shadow-sm">
       {/* Left Section - Mobile Menu & Search */}
       <div className="flex items-center gap-3 flex-1">
         {/* Mobile Menu Button */}

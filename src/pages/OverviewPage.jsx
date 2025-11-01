@@ -7,6 +7,7 @@ import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
 import PieChart from '../components/charts/PieChart';
 import PageHeader from '../components/layout/PageHeader';
+import WelcomeSection from '../components/layout/WelcomeSection';
 import {
   kpiData,
   budgetDistribution,
@@ -16,7 +17,6 @@ import {
   teamMembers,
   recentActivity,
 } from '../utils/dummyData';
-import { getCurrentDate } from '../utils/formatDate';
 
 const OverviewPage = () => {
   const activityIcons = {
@@ -32,8 +32,18 @@ const OverviewPage = () => {
     // Add export logic here
   };
 
+  const handleAddSchedule = () => {
+    console.log('Add Schedule clicked');
+    // Add schedule modal logic here
+  };
+
+  const handleAddRequest = () => {
+    console.log('Add Request clicked');
+    // Add request modal logic here
+  };
+
   return (
-    <div className="space-y-6 lg:space-y-8">
+    <div className="space-y-4 lg:space-y-5">
       {/* Page Header */}
       <PageHeader
         title="Admin Dashboard"
@@ -47,20 +57,15 @@ const OverviewPage = () => {
         onExport={handleExport}
       />
 
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-      >
-        <div>
-          <h1 className="text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-2 tracking-tight">
-            Welcome back, <span className="text-primary-600">Admin</span>
-          </h1>
-          <p className="text-sm text-gray-600 font-medium">{getCurrentDate()}</p>
-        </div>
-      </motion.div>
+      {/* Welcome Section */}
+      <WelcomeSection
+        userName="Admin"
+        userAvatar="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+        pendingApprovals={21}
+        leaveRequests={14}
+        onAddSchedule={handleAddSchedule}
+        onAddRequest={handleAddRequest}
+      />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
