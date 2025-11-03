@@ -63,13 +63,14 @@ const Sidebar = () => {
           id: 'departments',
           label: 'DEPARTMENT DASHBOARDS',
           items: [
-            { icon: Cog, label: 'R&D Department', color: 'text-purple-600' },
             { icon: Globe, label: 'GIS Department', color: 'text-green-600' },
             { icon: Ruler, label: 'Survey Department', color: 'text-blue-500' },
-            { icon: FileText, label: 'Accounting Department', color: 'text-emerald-600' },
-            { icon: Briefcase, label: 'Engineering Division', color: 'text-indigo-600' },
-            { icon: UserCircle, label: 'HR Department', color: 'text-pink-600' },
+            { icon: Cog, label: 'R&D UAS Department', color: 'text-purple-600' },
+            
+            { icon: Briefcase, label: 'Business Development', color: 'text-indigo-600' },
             { icon: Cpu, label: 'IT & Systems', color: 'text-cyan-600' },
+            { icon: UserCircle, label: 'HR Department', color: 'text-pink-600' },
+            { icon: FileText, label: 'Accounting Department', color: 'text-emerald-600' },
             { icon: ShoppingCart, label: 'Procurement & Logistics', color: 'text-amber-600' }
           ]
         }
