@@ -21,7 +21,7 @@ iegs-rnd-admin-dashboard/
 │   ├── 📁 components/
 │   │   ├── cards/         ← KpiCard, ProjectCard, TeamCard
 │   │   ├── charts/        ← LineChart, BarChart, PieChart (Recharts)
-│   │   ├── layout/        ← Sidebar, Navbar, Footer
+│   │   ├── layout/        ← Sidebar, Footer
 │   │   └── ui/            ← Button, Input, Dropdown, Tooltip
 │   │
 │   ├── 📁 context/

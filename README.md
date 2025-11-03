@@ -40,7 +40,7 @@ iegs-rnd-admin-dashboard/
 │   ├── components/        # React components
 │   │   ├── cards/        # Card components (KPI, Project, Team)
 │   │   ├── charts/       # Chart components (Line, Bar, Pie)
-│   │   ├── layout/       # Layout components (Sidebar, Navbar, Footer)
+│   │   ├── layout/       # Layout components (Sidebar, Footer)
 │   │   └── ui/           # Reusable UI components (Button, Input, etc.)
 │   ├── context/          # React context providers
 │   ├── hooks/            # Custom React hooks

@@ -112,12 +112,6 @@ App.jsx (Root)
 │           │   └── User Profile
 │           │
 │           └── Main Layout
-│               ├── Navbar (persistent)
-│               │   ├── Search
-│               │   ├── Theme Toggle
-│               │   ├── Notifications
-│               │   └── User Avatar
-│               │
 │               ├── Page Content (dynamic)
 │               │   └── Current Route Component
 │               │       ├── Overview Page
@@ -163,7 +157,6 @@ components/
 │
 ├── layout/         # Layout structure
 │   ├── Sidebar.jsx         → Navigation panel
-│   ├── Navbar.jsx          → Top bar
 │   └── Footer.jsx          → Bottom section
 │
 └── ui/             # Reusable UI elements

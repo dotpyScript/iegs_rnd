@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import { FolderKanban, Users, Plane, DollarSign, MessageSquare, Award, Upload, CheckCircle, FileText } from 'lucide-react';
 import KpiCard from '../components/cards/KpiCard';
 import ProjectCard from '../components/cards/ProjectCard';
@@ -6,8 +7,8 @@ import TeamCard from '../components/cards/TeamCard';
 import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
 import PieChart from '../components/charts/PieChart';
-import PageHeader from '../components/layout/PageHeader';
 import WelcomeSection from '../components/layout/WelcomeSection';
+import { ThemeContext } from '../context/ThemeContext';
 import {
   kpiData,
   budgetDistribution,
@@ -19,6 +20,8 @@ import {
 } from '../utils/dummyData';
 
 const OverviewPage = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  
   const activityIcons = {
     FileText,
     CheckCircle,
@@ -27,44 +30,13 @@ const OverviewPage = () => {
     Award,
   };
 
-  const handleExport = (type) => {
-    console.log(`Exporting ${type} for Overview Dashboard`);
-    // Add export logic here
-  };
-
-  const handleAddSchedule = () => {
-    console.log('Add Schedule clicked');
-    // Add schedule modal logic here
-  };
-
-  const handleAddRequest = () => {
-    console.log('Add Request clicked');
-    // Add request modal logic here
-  };
-
   return (
     <div className="space-y-4 lg:space-y-5">
-      {/* Page Header */}
-      <PageHeader
-        title="Admin Dashboard"
-        breadcrumbs={[
-          { icon: FolderKanban, label: 'Admin' },
-          { label: 'Admin Dashboard' }
-        ]}
-        showExport={true}
-        showYearSelector={true}
-        yearRange="2024-2025"
-        onExport={handleExport}
-      />
-
       {/* Welcome Section */}
       <WelcomeSection
-        userName="Admin"
-        userAvatar="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
-        pendingApprovals={21}
-        leaveRequests={14}
-        onAddSchedule={handleAddSchedule}
-        onAddRequest={handleAddRequest}
+        userName="Angela"
+        onThemeToggle={toggleTheme}
+        isDarkMode={theme === 'dark'}
       />
 
       {/* KPI Cards */}
