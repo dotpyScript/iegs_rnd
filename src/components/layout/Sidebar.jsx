@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { Home, FileText, Calendar, Users, MessageSquare, ChevronDown, ChevronRight, Star, Share2, Hash, LayoutDashboard, BarChart3, CheckSquare, FolderKanban, Clock, User, Settings, Bell } from 'lucide-react';
+import { useState, useContext } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Home, FileText, Calendar, Users, MessageSquare, ChevronDown, ChevronRight, Star, Share2, Hash, CheckSquare, FolderKanban, Clock, Bell } from 'lucide-react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Sidebar = () => {
+  const { theme } = useContext(ThemeContext);
+  const isDarkMode = theme === 'dark';
   const [activeMenu, setActiveMenu] = useState('home');
   const [expandedSections, setExpandedSections] = useState({
     favourite: true,
@@ -162,47 +166,85 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Left Icon Sidebar */}
-      <div className="w-14 bg-teal-600 flex flex-col items-center py-4 space-y-6 relative">
+      <div className={`w-14 flex flex-col items-center py-4 space-y-6 relative ${
+        isDarkMode ? 'bg-teal-600' : 'bg-black'
+      }`}>
         {/* Logo */}
-        <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-xl mb-4">
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl mb-4 ${
+          isDarkMode ? 'bg-teal-500' : 'bg-gray-800'
+        }`}>
           Y
         </div>
         
         {/* Navigation Icons */}
         {sidebarIcons.map((item) => (
           <div key={item.id} className="relative w-full flex justify-center">
-            <button
+            <motion.button
               onClick={() => setActiveMenu(item.id)}
+              whileHover={activeMenu === item.id ? {} : { scale: 1.05 }}
+              whileTap={activeMenu === item.id ? {} : { scale: 0.95 }}
               className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 relative z-10 ${
                 activeMenu === item.id 
-                  ? 'bg-white text-teal-600' 
-                  : 'text-teal-200 hover:bg-teal-700 hover:text-white'
+                  ? isDarkMode
+                    ? 'bg-white text-teal-600'
+                    : 'bg-white text-black'
+                  : isDarkMode
+                    ? 'text-teal-200 hover:bg-teal-700 hover:text-white'
+                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
               }`}
               title={item.label}
             >
               <item.icon size={20} />
-            </button>
+            </motion.button>
             
             {/* Curved extension to submenu */}
-            {activeMenu === item.id && (
-              <div className="absolute right-0 top-0 h-10 w-6 overflow-hidden">
-                <div className="absolute right-0 top-0 h-10 w-12 bg-white rounded-l-full"></div>
-              </div>
-            )}
+            <AnimatePresence>
+              {activeMenu === item.id && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute right-0 top-0 h-10 w-6 overflow-hidden"
+                >
+                  <div className="absolute right-0 top-0 h-10 w-12 bg-white dark:bg-white rounded-l-full"></div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             
             {/* Top curve notch */}
-            {activeMenu === item.id && (
-              <div className="absolute right-0 -top-6 h-6 w-6 overflow-hidden">
-                <div className="absolute right-0 bottom-0 h-12 w-12 bg-teal-600 rounded-br-full"></div>
-              </div>
-            )}
+            {/* <AnimatePresence>
+              {activeMenu === item.id && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute right-0 -top-6 h-6 w-6 overflow-hidden"
+                >
+                  <div className={`absolute -right-9 bottom-0 h-12 w-12 rounded-br-full ${
+                    isDarkMode ? 'bg-black' : 'bg-teal-600'
+                  }`}></div>
+                </motion.div>
+              )}
+            </AnimatePresence> */}
             
             {/* Bottom curve notch */}
-            {activeMenu === item.id && (
-              <div className="absolute right-0 -bottom-6 h-6 w-6 overflow-hidden">
-                <div className="absolute right-0 top-0 h-12 w-12 bg-teal-600 rounded-tr-full"></div>
-              </div>
-            )}
+            {/* <AnimatePresence>
+              {activeMenu === item.id && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute right-0 -bottom-6 h-6 w-6 overflow-hidden"
+                >
+                  <div className={`absolute right-0 top-0 h-12 w-12 rounded-tr-full ${
+                    isDarkMode ? 'bg-black' : 'bg-teal-600'
+                  }`}></div>
+                </motion.div>
+              )}
+            </AnimatePresence> */}
           </div>
         ))}
       </div>
@@ -216,7 +258,7 @@ const Sidebar = () => {
             return activeMenu === item.id ? (
               <div
                 key={item.id}
-                className="absolute w-3 h-10 bg-white rounded-l-lg transition-all duration-300"
+                className="absolute w-3 h-10 bg-white dark:bg-white rounded-l-lg transition-all duration-300"
                 style={{ top: `${topPosition}px` }}
               ></div>
             ) : null;
@@ -225,14 +267,33 @@ const Sidebar = () => {
         
         <div className="p-4 pl-6">
           {/* Menu Title */}
-          <h2 className="text-lg font-semibold text-gray-800 mb-6">{currentMenu.title}</h2>
+          <AnimatePresence mode="wait">
+            <motion.h2
+              key={activeMenu}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+              className="text-lg font-semibold text-gray-800 mb-6"
+            >
+              {currentMenu.title}
+            </motion.h2>
+          </AnimatePresence>
 
           {/* Sections */}
-          {currentMenu.sections.map((section) => (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeMenu}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              {currentMenu.sections.map((section) => (
             <div key={section.id} className="mb-6">
               <button
                 onClick={() => toggleSection(section.id)}
-                className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
+                className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-100"
               >
                 {expandedSections[section.id] ? (
                   <ChevronDown size={14} className="mr-1" />
@@ -242,15 +303,24 @@ const Sidebar = () => {
                 {section.label}
               </button>
               
-              {expandedSections[section.id] && (
-                <div className="space-y-1 ml-2">
-                  {section.items.map((item, index) => (
+              <AnimatePresence>
+                {expandedSections[section.id] && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="space-y-1 ml-2"
+                  >
+                    {section.items.map((item, index) => (
                     <div key={index}>
                       <div
                         className={`flex items-center justify-between px-3 py-2 text-sm rounded-md cursor-pointer ${
                           item.active
-                            ? 'bg-teal-50 text-teal-600'
-                            : 'text-gray-700 hover:bg-gray-100'
+                            ? 'bg-teal-50 text-teal-600 dark:text-teal-500'
+                            : isDarkMode
+                              ? 'text-black hover:bg-gray-100'
+                              : 'text-gray-700 hover:bg-black hover:text-gray-100'
                         }`}
                         onClick={() => item.submenu && toggleSection(item.label.toLowerCase().replace(/\s+/g, ''))}
                       >
@@ -273,25 +343,43 @@ const Sidebar = () => {
                       </div>
                       
                       {/* Submenu */}
-                      {item.submenu && expandedSections[item.label.toLowerCase().replace(/\s+/g, '')] && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          {item.submenu.map((subitem, subindex) => (
-                            <div
-                              key={subindex}
-                              className="flex items-center px-3 py-1.5 text-sm text-gray-600 rounded-md hover:bg-gray-100 cursor-pointer"
-                            >
-                              <subitem.icon size={12} className="mr-2 text-gray-400" />
-                              {subitem.label}
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                      <AnimatePresence>
+                        {item.submenu && expandedSections[item.label.toLowerCase().replace(/\s+/g, '')] && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="ml-6 mt-1 space-y-1"
+                          >
+                            {item.submenu.map((subitem, subindex) => (
+                              <motion.div
+                                key={subindex}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: subindex * 0.05 }}
+                                className={`flex items-center px-3 py-1.5 text-sm rounded-md cursor-pointer ${
+                                  isDarkMode
+                                    ? 'text-gray-700 hover:bg-gray-100'
+                                    : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                }`}
+                              >
+                                <subitem.icon size={12} className="mr-2 text-gray-400" />
+                                {subitem.label}
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ))}
-                </div>
-              )}
-            </div>
-          ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

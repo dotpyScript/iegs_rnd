@@ -103,6 +103,15 @@
   transition: opacity 300ms;
 }
 
+/* clipath for sidebar */
+
+.moon-curve {
+  clip-path: polygon(
+    87% 66%, 91% 61%, 93% 56%, 96% 55%,
+    85% 83%, 51% 78%, 67% 77%, 75% 75%, 82% 71%
+  );
+}
+
 /* Loading States */
 .skeleton {
   @apply bg-gray-200 rounded-lg animate-pulse;
