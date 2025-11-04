@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
-import { FolderKanban, Users, Plane, DollarSign, MessageSquare, Award, Upload, CheckCircle, FileText } from 'lucide-react';
+import { FolderKanban, Users, MessageSquare, Award, Upload, CheckCircle, FileText, PieChart as PieChartIcon, TrendingUp, ClipboardCheck } from 'lucide-react';
 import KpiCard from '../components/cards/KpiCard';
 import ProjectCard from '../components/cards/ProjectCard';
 import TeamCard from '../components/cards/TeamCard';
+import QuickStatsWidget from '../components/cards/QuickStatsWidget';
 import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
 import PieChart from '../components/charts/PieChart';
@@ -39,40 +40,85 @@ const OverviewPage = () => {
         isDarkMode={theme === 'dark'}
       />
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-        <KpiCard
-          title="Active Projects"
-          value={kpiData.activeProjects.value}
-          change={kpiData.activeProjects.change}
-          trend={kpiData.activeProjects.trend}
-          icon={FolderKanban}
-          index={0}
-        />
-        <KpiCard
-          title="Team Members"
-          value={kpiData.engineers.value}
-          change={kpiData.engineers.change}
-          trend={kpiData.engineers.trend}
-          icon={Users}
-          index={1}
-        />
-        <KpiCard
-          title="Test Flights"
-          value={kpiData.testFlights.value}
-          change={kpiData.testFlights.change}
-          trend={kpiData.testFlights.trend}
-          icon={Plane}
-          index={2}
-        />
-        <KpiCard
-          title="Budget Used"
-          value={`${kpiData.budgetUtilization.value}%`}
-          change={kpiData.budgetUtilization.change}
-          trend={kpiData.budgetUtilization.trend}
-          icon={DollarSign}
-          index={3}
-        />
+      {/* KPI Cards Grid: 2x3 Layout + Widget */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 items-start">
+        {/* Left Side: 6 KPI Cards in 2x3 Grid */}
+        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 items-start">
+          {/* 1. Active Projects */}
+          <KpiCard
+            title="Active Projects"
+            value="24"
+            change={12}
+            trend="up"
+            icon={FolderKanban}
+            accentColor="orange"
+            description="Up 12% from last month projects"
+            index={0}
+          />
+          
+          {/* 2. Completion Rate */}
+          <KpiCard
+            title="Completion Rate"
+            value="78%"
+            change={5}
+            trend="up"
+            icon={ClipboardCheck}
+            accentColor="green"
+            description="+5% improvement this quarter"
+            index={1}
+          />
+          
+          {/* 3. Budget Utilization */}
+          <KpiCard
+            title="Budget Utilization"
+            value="₦12.5M"
+            trend="neutral"
+            icon={PieChartIcon}
+            accentColor="blue"
+            description="Under control — remaining ₦7.5M"
+            index={2}
+          />
+          
+          {/* 4. Employee Engagement */}
+          <KpiCard
+            title="Staff Attendance"
+            value="92%"
+            trend="neutral"
+            icon={Users}
+            accentColor="blue"
+            description="HR trend stable this month"
+            index={3}
+          />
+          
+          {/* 5. Tasks Completed */}
+          <KpiCard
+            title="Tasks Completed"
+            value="312"
+            change={18}
+            trend="up"
+            icon={CheckCircle}
+            accentColor="cyan"
+            description="+18% since last week"
+            index={4}
+          />
+          
+          {/* 6. Revenue / Financial Growth */}
+          <KpiCard
+            title="Revenue"
+            value="₦42M"
+            change={9}
+            trend="up"
+            icon={TrendingUp}
+            accentColor="green"
+            description="+9% MoM"
+            index={5}
+          />
+        </div>
+
+        {/* Right Side: Quick Stats Widget */}
+        <div className="lg:col-span-1">
+          <QuickStatsWidget />
+        </div>
       </div>
 
       {/* Charts Section */}
