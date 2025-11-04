@@ -5,6 +5,7 @@ import KpiCard from '../components/cards/KpiCard';
 import ProjectCard from '../components/cards/ProjectCard';
 import TeamCard from '../components/cards/TeamCard';
 import QuickStatsWidget from '../components/cards/QuickStatsWidget';
+import PerformanceTrends from '../components/sections/PerformanceTrends';
 import LineChart from '../components/charts/LineChart';
 import BarChart from '../components/charts/BarChart';
 import PieChart from '../components/charts/PieChart';
@@ -120,6 +121,9 @@ const OverviewPage = () => {
           <QuickStatsWidget />
         </div>
       </div>
+
+      {/* Performance Trends Section */}
+      <PerformanceTrends />
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
