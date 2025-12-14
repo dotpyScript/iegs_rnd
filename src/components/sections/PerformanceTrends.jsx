@@ -55,11 +55,15 @@ const PerformanceTrends = () => {
       resource: ['#1f2937', '#d1d5db'],
     },
     dark: {
-      primary: ['#3b82f6', '#10b981'],
-      budget: ['#8b5cf6', '#f59e0b'],
-      headcount: ['#3b82f6', '#10b981', '#f59e0b'],
-      resource: ['#3b82f6', '#e5e7eb'],
-    }
+      primary: ['#000000', '#4b5563'],
+      budget: ['#374151', '#6b7280'],
+      headcount: ['#111827', '#4b5563', '#9ca3af'],
+      resource: ['#1f2937', '#d1d5db'],
+      // primary: ['#3b82f6', '#10b981'],
+      // budget: ['#8b5cf6', '#f59e0b'],
+      // headcount: ['#3b82f6', '#10b981', '#f59e0b'],
+      // resource: ['#3b82f6', '#e5e7eb'],
+    },
   };
 
   const colors = isDarkMode ? chartColors.dark : chartColors.light;
@@ -72,41 +76,53 @@ const PerformanceTrends = () => {
       transition: {
         delay: i * 0.1,
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    })
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    }),
   };
 
-  const ChartCard = ({ title, subtitle, icon: Icon, children, index, className = '' }) => (
+  const ChartCard = ({
+    title,
+    subtitle,
+    icon: Icon,
+    children,
+    index,
+    className = '',
+  }) => (
     <motion.div
       custom={index}
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       variants={chartContainerVariants}
       whileHover={{ y: -2, transition: { duration: 0.2 } }}
       className={`relative rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-200 border overflow-hidden ${className}
-        ${isDarkMode 
-          ? 'bg-white border-gray-200' 
-          : 'bg-white border-gray-200'
+        ${
+          isDarkMode ? 'bg-white border-gray-200' : 'bg-white border-gray-200'
         }`}
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-3 relative z-10">
-        <div className="flex items-center gap-2">
-          <div className={`w-8 h-8 rounded-lg flex items-center justify-center
-            ${isDarkMode ? 'bg-blue-500' : 'bg-gray-900'}
-          `}>
-            <Icon className="w-4 h-4 text-white" strokeWidth={2} />
+      <div className='flex items-center justify-between mb-3 relative z-10'>
+        <div className='flex items-center gap-2'>
+          <div
+            className={`w-8 h-8 rounded-lg flex items-center justify-center
+            ${isDarkMode ? 'bg-gray-900' : 'bg-gray-900'}
+          `} ////bg-blue-500
+          >
+            <Icon className='w-4 h-4 text-white' strokeWidth={2} />
           </div>
           <div>
-            <h3 className={`text-sm font-semibold
-              ${isDarkMode ? 'text-gray-900' : 'text-black'}
-            `}>
+            <h3
+              className={`text-sm font-semibold
+              ${isDarkMode ? 'text-black' : 'text-black'}
+            `} //text-gray-900
+            >
               {title}
             </h3>
-            <p className={`text-xs
-              ${isDarkMode ? 'text-gray-500' : 'text-gray-600'}
-            `}>
+            <p
+              className={`text-xs
+              ${isDarkMode ? 'text-gray-600' : 'text-gray-600'}
+            `}
+            >
               {subtitle}
             </p>
           </div>
@@ -114,17 +130,18 @@ const PerformanceTrends = () => {
       </div>
 
       {/* Chart Content */}
-      <div className="relative z-10 mb-3">
-        {children}
-      </div>
+      <div className='relative z-10 mb-3'>{children}</div>
 
       {/* Bottom Action */}
-      <div className="flex justify-center">
-        <button className={`text-xs font-medium px-3 py-1.5 rounded-lg transition-colors
-          ${isDarkMode 
-            ? 'text-blue-600 bg-blue-50 hover:bg-blue-100' 
-            : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
-          }`}>
+      <div className='flex justify-center'>
+        <button
+          className={`text-xs font-medium px-3 py-1.5 rounded-lg transition-colors
+          ${
+            isDarkMode
+              ? 'text-gray-700 bg-gray-100 hover:bg-gray-200'
+              : 'text-gray-700 bg-gray-100 hover:bg-gray-200'
+          }`} //text-blue-600 bg-blue-50 hover:bg-blue-100
+        >
           View Details
         </button>
       </div>
@@ -132,73 +149,77 @@ const PerformanceTrends = () => {
   );
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-between"
+        className='flex items-center justify-between'
       >
         <div>
-          <h2 className={`text-2xl font-display font-extrabold tracking-tight mb-2
-            ${isDarkMode ? 'text-gray-900' : 'text-black'}
-          `}>
+          <h2
+            className={`text-2xl font-display font-extrabold tracking-tight mb-2
+            ${isDarkMode ? 'text-black' : 'text-black'}
+          `} //text-gray-900
+          >
             Performance Trends
           </h2>
-          <p className={`text-sm font-medium
+          <p
+            className={`text-sm font-medium
             ${isDarkMode ? 'text-gray-600' : 'text-gray-600'}
-          `}>
+          `}
+          >
             Real-time analytics and key metrics evolution
           </p>
         </div>
       </motion.div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {/* Project Completion Trend */}
         <ChartCard
-          title="Project Completion Trend"
-          subtitle="Completed vs. planned projects over time"
+          title='Project Completion Trend'
+          subtitle='Completed vs. planned projects over time'
           icon={TrendingUp}
           index={0}
         >
-           <AreaChart
-             data={projectCompletionData}
-             dataKeys={['planned', 'completed']}
-             xKey="month"
-             colors={colors.primary}
-             height={180}
-           />
+          <AreaChart
+            data={projectCompletionData}
+            dataKeys={['planned', 'completed']}
+            xKey='month'
+            colors={colors.primary}
+            height={180}
+          />
         </ChartCard>
 
         {/* Budget vs Expenditure */}
         <ChartCard
-          title="Budget vs. Expenditure"
-          subtitle="Financial performance tracking"
+          title='Budget vs. Expenditure'
+          subtitle='Financial performance tracking'
           icon={DollarSign}
           index={1}
         >
-           <GroupedBarChart
-             data={budgetExpenditureData}
-             dataKeys={['budget', 'expenditure']}
-             xKey="month"
-             colors={colors.budget}
-             height={180}
-           />
+          <GroupedBarChart
+            data={budgetExpenditureData}
+            dataKeys={['budget', 'expenditure']}
+            xKey='month'
+            colors={colors.budget}
+            height={180}
+          />
         </ChartCard>
 
         {/* Headcount Growth */}
         <ChartCard
-          title="Headcount Growth"
-          subtitle="Team expansion across departments"
+          title='Headcount Growth'
+          subtitle='Team expansion across departments'
           icon={Users}
           index={2}
         >
           <MultiLineChart
             data={headcountData}
             dataKeys={['engineering', 'design', 'operations']}
-            xKey="month"
+            xKey='month'
             colors={colors.headcount}
             height={180}
           />
@@ -206,15 +227,15 @@ const PerformanceTrends = () => {
 
         {/* Resource Utilization */}
         <ChartCard
-          title="Resource Utilization"
-          subtitle="Department-wise resource allocation"
+          title='Resource Utilization'
+          subtitle='Department-wise resource allocation'
           icon={Activity}
           index={3}
         >
           <StackedBarChart
             data={resourceUtilizationData}
             dataKeys={['utilized', 'idle']}
-            xKey="department"
+            xKey='department'
             colors={colors.resource}
             height={180}
           />
@@ -225,4 +246,3 @@ const PerformanceTrends = () => {
 };
 
 export default PerformanceTrends;
-
