@@ -414,18 +414,21 @@ const Sidebar = () => {
               icon: DollarSign,
               label: 'Financial Reports',
               color: 'text-green-600',
+              route: '/data/financialtReport'
             },
             {
               icon: FolderKanban,
               label: 'Project Performance',
               color: 'text-orange-600',
+              route: '/data/projectsReport'
             },
-            { icon: Plane, label: 'Drone Analytics', color: 'text-sky-600' },
-            { icon: Download, label: 'Export Reports', color: 'text-gray-600' },
+            { icon: Plane, label: 'Drone Analytics', color: 'text-sky-600', route: '/data/droneReport' },
+            { icon: Download, label: 'Export Reports', color: 'text-gray-600', route: '/data/exportReport' },
             {
               icon: Link,
               label: 'Sync to Main Portal',
               color: 'text-teal-600',
+              route: '/data/sync'
             },
           ],
         },
@@ -438,33 +441,38 @@ const Sidebar = () => {
           id: 'admin',
           label: 'SYSTEM ADMINISTRATION',
           items: [
-            { icon: UserCog, label: 'User Management', color: 'text-blue-600' },
+            { icon: UserCog, label: 'User Management', color: 'text-blue-600', route: '/admin/userManagement' },
             {
               icon: Shield,
               label: 'Roles & Permissions',
               color: 'text-purple-600',
+              route: '/admin/permissions' 
             },
             {
               icon: Building2,
               label: 'Organization Structure',
               color: 'text-gray-600',
+              route: '/admin/structure' 
             },
             {
               icon: Lock,
               label: 'Authentication & Security',
               color: 'text-red-600',
+              route: '/admin/security' 
             },
             {
               icon: Cog,
               label: 'System Configurations',
               color: 'text-orange-600',
+              route: '/admin/configuration' 
             },
-            { icon: Layers, label: 'Integrations', color: 'text-teal-600' },
-            { icon: BookOpen, label: 'Audit Logs', color: 'text-indigo-600' },
+            { icon: Layers, label: 'Integrations', color: 'text-teal-600', route: '/admin/integration'},
+            { icon: BookOpen, label: 'Audit Logs', color: 'text-indigo-600', route: '/admin/audit'},
             {
               icon: Archive,
               label: 'Backups & Data Recovery',
               color: 'text-green-600',
+              route: '/admin/backup' 
             },
           ],
         },
@@ -477,20 +485,23 @@ const Sidebar = () => {
           id: 'settings',
           label: 'USER PREFERENCES',
           items: [
-            { icon: Moon, label: 'Theme', color: 'text-indigo-600' },
+            { icon: Moon, label: 'Theme', color: 'text-indigo-600', route: '/settings/userReference'},
             {
               icon: Languages,
               label: 'Language & Region',
               color: 'text-blue-600',
+               route: '/settings/language'
+
             },
             {
               icon: BellRing,
               label: 'Notifications Settings',
               color: 'text-orange-600',
+               route: '/settings/notification'
             },
-            { icon: Settings, label: 'Preferences', color: 'text-gray-600' },
-            { icon: Trash2, label: 'Clear Cache', color: 'text-yellow-600' },
-            { icon: LogOut, label: 'Logout', color: 'text-red-600' },
+            { icon: Settings, label: 'Preferences', color: 'text-gray-600', route: '/settings/preference'},
+            { icon: Trash2, label: 'Clear Cache', color: 'text-yellow-600', route: '/settings/clearCache' },
+            { icon: LogOut, label: 'Logout', color: 'text-red-600', route: '/settings/logout'},
           ],
         },
       ],
