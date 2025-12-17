@@ -21,6 +21,7 @@ import {
   Award,
   X,
   Calendar,
+  DollarSign,
 } from 'lucide-react';
 
 const StaffManagement = () => {
@@ -276,6 +277,12 @@ const StaffManagement = () => {
       label: 'Performance',
       icon: BarChart2,
       tooltip: 'Performance Reports',
+    },
+    {
+      id: 'payroll',
+      label: 'Payroll',
+      icon: DollarSign,
+      tooltip: 'Payroll & Salary Info',
     },
   ];
 
@@ -613,15 +620,252 @@ const StaffManagement = () => {
     </div>
   );
 
-  const renderPayrole = () => {};
+  const renderPayroll = () => (
+    <div className="space-y-4 animate-fadeIn">
+      {/* Payroll Overview Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        {[
+          {
+            value: '₦52.5M',
+            label: 'Total Monthly Payroll',
+            sublabel: '+2.4% from last month',
+          },
+          {
+            value: '₦456K',
+            label: 'Average Salary',
+            sublabel: 'Across all departments',
+          },
+          {
+            value: '₦8.2M',
+            label: 'Benefits & Bonuses',
+            sublabel: 'This quarter',
+          },
+          {
+            value: '115',
+            label: 'Employees on Payroll',
+            sublabel: '6 pending payments',
+          },
+        ].map((stat, idx) => (
+          <div
+            key={idx}
+            className="border-2 border-gray-200 rounded-lg p-5 bg-white animate-slideUp"
+            style={{ animationDelay: `${idx * 50}ms` }}
+          >
+            <div className="text-2xl font-bold text-gray-900 mb-0.5">
+              {stat.value}
+            </div>
+            <div className="text-xs font-medium text-gray-900 mb-1">
+              {stat.label}
+            </div>
+            <div className="text-xs text-gray-500">{stat.sublabel}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Filters and Actions */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2">
+          <button className="px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all">
+            All Employees
+          </button>
+          <button className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            Engineering
+          </button>
+          <button className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            Design
+          </button>
+          <button className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors">
+            Product
+          </button>
+        </div>
+        <div className="flex items-center gap-2">
+          <select className="px-3 py-1.5 text-xs border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+            <option>December 2024</option>
+            <option>November 2024</option>
+            <option>October 2024</option>
+          </select>
+          <button className="px-3 py-1.5 text-xs font-medium bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+            Process Payroll
+          </button>
+        </div>
+      </div>
+
+      {/* Payroll Table */}
+      <div className="border-2 border-gray-200 rounded-lg overflow-hidden bg-white">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b-2 border-gray-200">
+              <tr>
+                {[
+                  'Employee',
+                  'Department',
+                  'Base Salary',
+                  'Allowances',
+                  'Deductions',
+                  'Net Salary',
+                  'Status',
+                  'Actions',
+                ].map((header) => (
+                  <th
+                    key={header}
+                    className="px-5 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y-2 divide-gray-100">
+              {employees.map((emp, idx) => {
+                const baseSalary = parseInt(emp.salary.replace(/[^\d]/g, ''));
+                const allowances = Math.floor(baseSalary * 0.15);
+                const deductions = Math.floor(baseSalary * 0.08);
+                const netSalary = baseSalary + allowances - deductions;
+
+                return (
+                  <tr
+                    key={emp.id}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-xs font-semibold">
+                          {emp.avatar}
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">
+                            {emp.name}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {emp.role}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap text-xs text-gray-600">
+                      {emp.department}
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <span className="text-sm font-semibold text-gray-900">
+                        {emp.salary}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <span className="text-sm text-gray-600">
+                        ₦{allowances.toLocaleString()}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <span className="text-sm text-gray-600">
+                        ₦{deductions.toLocaleString()}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <span className="text-sm font-bold text-gray-900">
+                        ₦{netSalary.toLocaleString()}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <span
+                        className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
+                          idx % 3 === 0
+                            ? 'bg-gray-900 text-white'
+                            : 'bg-gray-200 text-gray-700'
+                        }`}
+                      >
+                        {idx % 3 === 0 ? 'Paid' : 'Pending'}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 whitespace-nowrap">
+                      <div className="flex gap-1">
+                        <button
+                          className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+                          title="View Details"
+                        >
+                          <Eye size={14} className="text-gray-600" />
+                        </button>
+                        <button
+                          className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+                          title="Edit"
+                        >
+                          <Edit size={14} className="text-gray-600" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Salary Breakdown Cards */}
+      <div className="mt-6">
+        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+          Department Salary Breakdown
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {departments.map((dept, idx) => {
+            const avgSalary = Math.floor(Math.random() * 200000) + 400000;
+            const totalPayroll = avgSalary * dept.employees;
+
+            return (
+              <div
+                key={idx}
+                className="border-2 border-gray-200 rounded-lg p-5 hover:border-black transition-all duration-300 bg-white animate-slideUp"
+                style={{ animationDelay: `${idx * 50}ms` }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div
+                    className={`w-10 h-10 ${dept.color} rounded-lg flex items-center justify-center text-white text-sm font-bold`}
+                  >
+                    {dept.name.charAt(0)}
+                  </div>
+                  <DollarSign size={18} className="text-gray-400" />
+                </div>
+
+                <h4 className="font-semibold text-sm text-gray-900 mb-3">
+                  {dept.name}
+                </h4>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-600">Employees</span>
+                    <span className="text-sm font-semibold text-gray-900">
+                      {dept.employees}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-600">Avg. Salary</span>
+                    <span className="text-sm font-semibold text-gray-900">
+                      ₦{avgSalary.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center pt-2 border-t-2 border-gray-100">
+                    <span className="text-xs font-medium text-gray-900">
+                      Total Payroll
+                    </span>
+                    <span className="text-sm font-bold text-gray-900">
+                      ₦{(totalPayroll / 1000000).toFixed(1)}M
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="h-screen flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b-2 border-gray-200 px-6 py-4">
+        <div className="bg-white border-b-2 border-gray-200 px-6 py-4 rounded-md">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center justify-center gap-6">
               <div>
                 <h1 className="text-xl font-bold text-gray-900">
                   Staff Management
@@ -630,29 +874,29 @@ const StaffManagement = () => {
                   Manage your team and HR operations
                 </p>
               </div>
+            </div>
 
-              {/* View Switcher */}
-              <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
-                {views.map((view) => (
-                  <div key={view.id} className="relative group">
-                    <button
-                      onClick={() => setActiveView(view.id)}
-                      className={`p-2 rounded transition-all ${
-                        activeView === view.id
-                          ? 'bg-white text-black'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      title={view.tooltip}
-                    >
-                      <view.icon size={18} />
-                    </button>
-                    {/* Tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      {view.tooltip}
-                    </div>
+            {/* View Switcher */}
+            <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
+              {views.map((view) => (
+                <div key={view.id} className="relative group">
+                  <button
+                    onClick={() => setActiveView(view.id)}
+                    className={`p-2 rounded transition-all ${
+                      activeView === view.id
+                        ? 'bg-white text-black'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                    title={view.tooltip}
+                  >
+                    <view.icon size={18} />
+                  </button>
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    {view.tooltip}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
             {/* Action Buttons */}
@@ -703,6 +947,7 @@ const StaffManagement = () => {
             {activeView === 'departments' && renderDepartments()}
             {activeView === 'attendance' && renderAttendance()}
             {activeView === 'performance' && renderPerformance()}
+            {activeView === 'payroll' && renderPayroll()}
           </div>
         </div>
       </div>
