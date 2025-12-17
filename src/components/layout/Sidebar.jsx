@@ -88,16 +88,16 @@ const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('home');
   const [expandedSections, setExpandedSections] = useState({
     home: true,
-    departments: false,
-    projects: false,
-    drone: false,
-    accounting: false,
-    inventory: false,
-    hr: false,
-    communication: false,
-    reports: false,
-    admin: false,
-    settings: false,
+    departments: true,
+    projects: true,
+    drone: true,
+    accounting: true,
+    inventory: true,
+    hr: true,
+    communication: true,
+    reports: true,
+    admin: true,
+    settings: true,
   });
 
   const toggleSection = (section) => {
@@ -419,9 +419,9 @@ const Sidebar = () => {
           items: [
             {
               icon: Users,
-              label: 'Employee Directory',
+              label: 'Employee Dashboard ', //Directory
               color: 'text-blue-600',
-              route: '/hr/employee',
+              route: '/hr/StaffManagement',
             },
             {
               icon: Building2,
@@ -789,8 +789,10 @@ const Sidebar = () => {
                         {section.items.map((item, index) => (
                           <div key={index}>
                             <div
+                              // role="button"
+                              // tabIndex={0}
                               onClick={() => handleNavigation(item.route)}
-                              className={`flex items-center justify-between px-3 py-2 text-sm rounded-md cursor-pointer ${
+                              className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer ${
                                 location.pathname === item.route
                                   ? 'bg-teal-50 text-teal-600'
                                   : 'text-gray-700 hover:bg-black hover:text-gray-100'

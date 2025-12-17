@@ -1,5 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import ServerError500 from '../pages/errors/ServerError500';
+import NotFound404 from '../pages/errors/NotFound404';
 // Company pages
 import OverviewPage from '../pages/Home/OverviewPage';
 // import AnalyticsPage from '../pages/Home/AnalyticsPage';
@@ -54,6 +56,7 @@ import InventoryOverview from '../pages/inventory/InventoryOverview';
 // import VendorsPage from '../pages/inventory/VendorsPage';
 
 // HR pages
+import StaffManagement from '../pages/hr/StaffManagement';
 // import EmployeeDirectoryPage from '../pages/hr/EmployeeDirectoryPage';
 // import DepartmentsRolesPage from '../pages/hr/DepartmentsRolesPage';
 // import AttendancePage from '../pages/hr/AttendancePage';
@@ -102,13 +105,16 @@ const AppRoutes = () => {
     <Routes>
       {/* Default redirect to overview */}
       <Route path="/" element={<Navigate to="/overview" replace />} />
-
+      {/* errors */}
+      <Route path="/404" element={<NotFound404 />} />
+      <Route path="/500" element={<ServerError500 />} />
+      <Route path="*" element={<NotFound404 />} />
+      {/* Catch-all */}
       {/* Company Overview */}
       <Route path="/overview" element={<OverviewPage />} />
       {/* <Route path='/analytics' element={<AnalyticsPage />} />
       <Route path='/activity' element={<ActivityFeedPage />} />
       <Route path='/notifications' element={<NotificationsPage />} /> */}
-
       {/* Departments */}
       {/* <Route path='/departments/gis' element={<GISPage />} />
       <Route path='/departments/survey' element={<SurveyPage />} />
@@ -118,7 +124,6 @@ const AppRoutes = () => {
       <Route path='/departments/hr' element={<HRDepartmentPage />} />
       <Route path='/departments/accounting' element={<AccountingDeptPage />} />
       <Route path='/departments/procurement' element={<ProcurementPage />} /> */}
-
       {/* Projects */}
       <Route path="/project/projects" element={<ProjectsOverview />} />
       {/*
@@ -149,7 +154,6 @@ const AppRoutes = () => {
       <Route path='/accounting/funds' element={<FundRequestsPage />} />
       <Route path='/accounting/budgets' element={<BudgetsPage />} />
       <Route path='/accounting/payroll' element={<PayrollPage />} /> */}
-
       {/* Inventory */}
       <Route
         path="/inventory/inventoryOverview"
@@ -164,20 +168,19 @@ const AppRoutes = () => {
       <Route path='/inventory/vendors' element={<VendorsPage />} /> */}
 
       {/* Human Resources */}
-      {/* <Route path='/hr/employees' element={<EmployeeDirectoryPage />} />
+      <Route path="/hr/StaffManagement" element={<StaffManagement />} />
+      {/*
       <Route path='/hr/departments' element={<DepartmentsRolesPage />} />
       <Route path='/hr/attendance' element={<AttendancePage />} />
       <Route path='/hr/performance' element={<PerformancePage />} />
       <Route path='/hr/payroll' element={<HRPayrollPage />} />
       <Route path='/hr/add' element={<AddEmployeePage />} /> */}
-
       {/* Communication */}
       {/* <Route path='/communication/chat' element={<ChatPage />} />
       <Route path='/communication/announcements' element={<AnnouncementsPage />} />
       <Route path='/communication/meetings' element={<MeetingsPage />} />
       <Route path='/communication/files' element={<SharedFilesPage />} />
       <Route path='/communication/email' element={<EmailPage />} /> */}
-
       {/* Reports */}
       <Route path="/data/reportsOverview" element={<ReportsOverview />} />
       {/*
@@ -187,7 +190,6 @@ const AppRoutes = () => {
       <Route path='/reports/drone' element={<DroneAnalyticsPage />} />
       <Route path='/reports/export' element={<ExportReportsPage />} />
       <Route path='/reports/sync' element={<SyncPortalPage />} /> */}
-
       {/* Administration */}
       <Route path="/admin/TeamPage" element={<TeamPage />} />
       {/* <Route path='/admin/users' element={<UserManagementPage />} />
@@ -198,7 +200,6 @@ const AppRoutes = () => {
       <Route path='/admin/integrations' element={<IntegrationsPage />} />
       <Route path='/admin/logs' element={<AuditLogsPage />} />
       <Route path='/admin/backups' element={<BackupsPage />} /> */}
-
       {/* Settings */}
       <Route path="/settings/settings" element={<SettingsPage />} />
       {/* <Route path='/settings/theme' element={<ThemeSettingsPage />} />
@@ -206,7 +207,6 @@ const AppRoutes = () => {
       <Route path='/settings/notifications' element={<NotificationSettingsPage />} />
       <Route path='/settings/preferences' element={<PreferencesPage />} />
       <Route path='/settings/cache' element={<ClearCachePage />} /> */}
-
       {/* </Routes> */}
     </Routes>
   );

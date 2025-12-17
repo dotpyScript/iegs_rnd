@@ -114,7 +114,7 @@ const KpiCard = ({
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
       whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
-      className={`group relative rounded-2xl p-5 hover:shadow-md transition-all duration-300 border overflow-hidden cursor-pointer min-h-[145px]
+      className={`group relative rounded-2xl p-5 hover:shadow-md transition-all duration-300 border overflow-hidden cursor-pointer min-h-[180px]
         ${
           isDarkMode ? 'bg-white border-gray-200' : 'bg-white border-gray-200'
         } ${colorClasses.hoverBorder}`}
@@ -131,10 +131,10 @@ const KpiCard = ({
         className={`absolute -right-6 -top-6 w-28 h-28 rounded-full ${colorClasses.lightBg} opacity-30 group-hover:opacity-50 group-hover:scale-110 transition-all duration-300`}
       />
 
-      <div className='relative z-10'>
+      <div className="relative z-10">
         {/* Header */}
-        <div className='flex items-start justify-between mb-4'>
-          <div className='flex-1'>
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex-1">
             <p
               className={`text-[11px] font-bold uppercase tracking-[0.1em] mb-0.5
               ${isDarkMode ? 'text-black' : 'text-black'}
@@ -156,7 +156,7 @@ const KpiCard = ({
         </div>
 
         {/* Value with enhanced typography */}
-        <div className='mb-3.5'>
+        <div className="mb-3.5">
           <h3
             className={`text-2xl font-display font-extrabold tracking-tight leading-none
             ${isDarkMode ? 'text-black' : 'text-black'}
@@ -177,13 +177,13 @@ const KpiCard = ({
           </p>
         ) : (
           change !== undefined && (
-            <div className='flex items-center gap-2'>
+            <div className="flex items-center gap-2">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg ${getTrendColor()}`}
               >
-                <TrendIcon className='w-3.5 h-3.5' strokeWidth={2.5} />
-                <span className='text-xs font-bold'>
+                <TrendIcon className="w-3.5 h-3.5" strokeWidth={2.5} />
+                <span className="text-xs font-bold">
                   {trend === 'up' ? '+' : trend === 'down' ? '-' : ''}
                   {change}%
                 </span>
@@ -202,10 +202,10 @@ const KpiCard = ({
 
       {/* Shimmer Effect on Hover */}
       <motion.div
-        className='absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300'
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300"
         initial={false}
       >
-        <div className='absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent' />
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent" />
       </motion.div>
 
       {/* Bottom Glow Effect */}
