@@ -6,7 +6,7 @@ import Input from '../../components/ui/Input';
 import Dropdown from '../../components/ui/Dropdown';
 import { formatDate } from '../../utils/formatDate';
 
-const ProjectsPage = () => {
+const ProjectsOverview = () => {
   const [viewMode, setViewMode] = useState('kanban'); // 'kanban' or 'list'
   const [searchQuery, setSearchQuery] = useState('');
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
@@ -1373,7 +1373,7 @@ const ProjectsPage = () => {
                 />
 
                 <div>
-                  <label className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                  <label htmlFor='textarea' className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
                     Task Comment / Instructions
                   </label>
                   <textarea
@@ -1427,5 +1427,5 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default ProjectsOverview;
 

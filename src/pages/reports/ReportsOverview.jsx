@@ -3,7 +3,7 @@ import { FileText, Download, Calendar, Eye } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { formatDate } from '../../utils/formatDate';
 
-const ReportsPage = () => {
+const ReportsOverview = () => {
   const reports = [
     {
       id: 1,
@@ -189,5 +189,5 @@ const ReportsPage = () => {
   );
 };
 
-export default ReportsPage;
+export default ReportsOverview;
 

@@ -4,7 +4,7 @@ import LineChart from '../../components/charts/LineChart';
 import { flightHoursData, droneInventory } from '../../utils/dummyData';
 import { formatDate } from '../../utils/formatDate';
 
-const DroneOpsPage = () => {
+const DroneOverview = () => {
   const statusColors = {
     operational: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
     maintenance: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
@@ -181,5 +181,5 @@ const DroneOpsPage = () => {
   );
 };
 
-export default DroneOpsPage;
+export default DroneOverview;
 

@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Home,
   Building2,
@@ -26,7 +27,7 @@ import {
   UserCircle,
   Cpu,
   ShoppingCart,
-  Truck,
+  // Truck,
   ClipboardList,
   Calendar,
   CheckSquare,
@@ -39,7 +40,7 @@ import {
   Upload,
   Wallet,
   Receipt,
-  CreditCard,
+  // CreditCard,
   Coins,
   Building,
   Banknote,
@@ -52,7 +53,7 @@ import {
   UserPlus,
   CalendarDays,
   TrendingDown,
-  Mail,
+  // Mail,
   Folder,
   Send,
   BarChart2,
@@ -61,7 +62,7 @@ import {
   UserCog,
   Lock,
   Layers,
-  Key,
+  // Key,
   BookOpen,
   Archive,
   Moon,
@@ -69,26 +70,34 @@ import {
   BellRing,
   Trash2,
   LogOut,
-  Route,
+  // Route,
 } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Add navigation handler
+  const handleNavigation = (route) => {
+    navigate(route);
+  };
+
   const { theme } = useContext(ThemeContext);
   const isDarkMode = theme === 'dark';
   const [activeMenu, setActiveMenu] = useState('home');
   const [expandedSections, setExpandedSections] = useState({
     home: true,
-    departments: true,
-    projects: true,
-    drone: true,
-    accounting: true,
-    inventory: true,
-    hr: true,
-    communication: true,
-    reports: true,
-    admin: true,
-    settings: true,
+    departments: false,
+    projects: false,
+    drone: false,
+    accounting: false,
+    inventory: false,
+    hr: false,
+    communication: false,
+    reports: false,
+    admin: false,
+    settings: false,
   });
 
   const toggleSection = (section) => {
@@ -107,18 +116,30 @@ const Sidebar = () => {
           id: 'home',
           label: 'COMPANY OVERVIEW',
           items: [
-            { icon: LayoutGrid, label: 'Overview', color: 'text-blue-600', route: '/overview' },
-            { icon: TrendingUp, label: 'Analytics', color: 'text-teal-600', route: '/analytics'},
+            {
+              icon: LayoutGrid,
+              label: 'Overview',
+              color: 'text-blue-600',
+              route: '/overview',
+            },
+            {
+              icon: TrendingUp,
+              label: 'Analytics',
+              color: 'text-teal-600',
+              route: '/analytics',
+            },
             {
               icon: Activity,
               label: 'Activity Feed',
-              color: 'text-orange-500', route: '/activity'
+              color: 'text-orange-500',
+              route: '/activity',
             },
             {
               icon: Bell,
               label: 'Notifications',
               color: 'text-red-500',
-              badge: '5', route: '/notification'
+              badge: '5',
+              route: '/notification',
             },
           ],
         },
@@ -131,34 +152,54 @@ const Sidebar = () => {
           id: 'departments',
           label: 'DEPARTMENT DASHBOARDS',
           items: [
-            { icon: Globe, label: 'GIS Department', color: 'text-green-600', route: '/gis' },
-            { icon: Ruler, label: 'Survey Department', color: 'text-blue-500', route: '/survey'},
+            {
+              icon: Globe,
+              label: 'GIS Department',
+              color: 'text-green-600',
+              route: '/gis',
+            },
+            {
+              icon: Ruler,
+              label: 'Survey Department',
+              color: 'text-blue-500',
+              route: '/survey',
+            },
             {
               icon: Cog,
               label: 'R&D UAS Department',
-              color: 'text-purple-600', route: '/rnd'
+              color: 'text-purple-600',
+              route: '/rnd',
             },
 
             {
               icon: Briefcase,
               label: 'Business Development',
-              color: 'text-indigo-600', route: 'business'
+              color: 'text-indigo-600',
+              route: 'business',
             },
-            { icon: Cpu, label: 'IT & Systems', color: 'text-cyan-600', route: '/system'},
+            {
+              icon: Cpu,
+              label: 'IT & Systems',
+              color: 'text-cyan-600',
+              route: '/system',
+            },
             {
               icon: UserCircle,
               label: 'HR Department',
-              color: 'text-pink-600', route: '/hr'
+              color: 'text-pink-600',
+              route: '/hr',
             },
             {
               icon: FileText,
               label: 'Accounting Department',
-              color: 'text-emerald-600', route: '/accounting'
+              color: 'text-emerald-600',
+              route: '/accounting',
             },
             {
               icon: ShoppingCart,
               label: 'Procurement & Logistics',
-              color: 'text-amber-600', route: '/procurement'
+              color: 'text-amber-600',
+              route: '/procurement',
             },
           ],
         },
@@ -171,35 +212,50 @@ const Sidebar = () => {
           id: 'projects',
           label: 'PROJECT MANAGEMENT',
           items: [
-            { icon: Folder, label: 'All Projects', color: 'text-blue-600', route: '/project/project' },
+            {
+              icon: Folder,
+              label: 'Projects Overview',
+              color: 'text-blue-600',
+              route: '/project/projects',
+            },
             {
               icon: Calendar,
               label: 'Active Projects',
               color: 'text-green-600',
-              badge: '12', route: '/project/active'
+              badge: '12',
+              route: '/projects/active',
             },
             {
               icon: Clock,
               label: 'Pending / Upcoming',
               color: 'text-yellow-600',
-              badge: '8', route: '/project/active'
+              badge: '8',
+              route: '/projects/active',
             },
             {
               icon: CheckSquare,
               label: 'Completed Projects',
               color: 'text-gray-600',
-              badge: '24', route: '/project/completed'
+              badge: '24',
+              route: '/projects/completed',
             },
-            { icon: Users, label: 'Assigned Teams', color: 'text-purple-600', route: '/project/assignedTeams' },
+            {
+              icon: Users,
+              label: 'Assigned Teams',
+              color: 'text-purple-600',
+              route: '/project/assignedTeams',
+            },
             {
               icon: Target,
               label: 'Milestones & Deliverables',
-              color: 'text-orange-600', route: '/project/milestone'
+              color: 'text-orange-600',
+              route: '/project/milestone',
             },
             {
               icon: FilePlus,
               label: 'Create New Project',
-              color: 'text-teal-600', route: '/project/newProject'
+              color: 'text-teal-600',
+              route: '/project/newProject',
             },
           ],
         },
@@ -212,19 +268,36 @@ const Sidebar = () => {
           id: 'drone',
           label: 'UAV DATA & ANALYTICS',
           items: [
-            { icon: PlaneTakeoff, label: 'Flight Logs', color: 'text-sky-600', route: '/drone/droneOverview' },
+            {
+              icon: PlaneTakeoff,
+              label: 'Flight Logs',
+              color: 'text-sky-600',
+              route: '/drone/droneOverview',
+              // FlightLogsPage
+            },
             {
               icon: BarChart3,
               label: 'Telemetry Analytics',
-              color: 'text-blue-600',  route: '/drone/telemetry'
+              color: 'text-blue-600',
+              route: '/drone/telemetry',
             },
-            { icon: Camera, label: 'Flight Media', color: 'text-purple-600', route: '/drone/media' },
-            { icon: TestTube, label: 'Test Reports', color: 'text-green-600', route: '/drone/testReport' },
+            {
+              icon: Camera,
+              label: 'Flight Media',
+              color: 'text-purple-600',
+              route: '/drone/media',
+            },
+            {
+              icon: TestTube,
+              label: 'Test Reports',
+              color: 'text-green-600',
+              route: '/drone/testReport',
+            },
             {
               icon: Upload,
               label: 'Upload Flight Data',
               color: 'text-orange-600',
-              route: '/drone/uploadData'
+              route: '/drone/uploadData',
             },
           ],
         },
@@ -237,37 +310,47 @@ const Sidebar = () => {
           id: 'accounting',
           label: 'FINANCIAL MANAGEMENT',
           items: [
-            { icon: Wallet, label: 'Overview', color: 'text-emerald-600', route: '/accounting/accountingOverview' },
+            {
+              icon: Wallet,
+              label: 'Overview',
+              color: 'text-emerald-600',
+              route: '/accounting/accountingOverview',
+            },
             {
               icon: TrendingDown,
               label: 'Expenditures',
               color: 'text-red-600',
-              route: '/accounting/expenditure'
+              route: '/accounting/expenditure',
             },
             {
               icon: Receipt,
               label: 'Invoices & Receipts',
               color: 'text-blue-600',
-              route: '/accounting/invoice'
+              route: '/accounting/invoice',
             },
             {
               icon: FileText,
               label: 'Expense Categories',
               color: 'text-indigo-600',
-              route: '/accounting/expense'
+              route: '/accounting/expense',
             },
-            { icon: Coins, label: 'Fund Requests', color: 'text-yellow-600', route: '/accounting/fundRequest' },
+            {
+              icon: Coins,
+              label: 'Fund Requests',
+              color: 'text-yellow-600',
+              route: '/accounting/fundRequest',
+            },
             {
               icon: Building,
               label: 'Departmental Budgets',
               color: 'text-purple-600',
-              route: '/accounting/budget'
+              route: '/accounting/budget',
             },
             {
               icon: Banknote,
               label: 'Payments & Payroll',
               color: 'text-green-600',
-               route: '/accounting/payments'
+              route: '/accounting/payments',
             },
           ],
         },
@@ -280,38 +363,48 @@ const Sidebar = () => {
           id: 'inventory',
           label: 'INVENTORY MANAGEMENT',
           items: [
-            { icon: Box, label: 'Inventory Overview', color: 'text-blue-600', route: '/inventory/inventoryOverview' },
+            {
+              icon: Box,
+              label: 'Inventory Overview',
+              color: 'text-blue-600',
+              route: '/inventory/inventoryOverview',
+            },
             {
               icon: Wrench,
               label: 'Equipment & Hardware',
               color: 'text-gray-600',
-               route: '/inventory/equipment'
+              route: '/inventory/equipment',
             },
             {
               icon: Battery,
               label: 'Consumables & Parts',
               color: 'text-green-600',
-              route: '/inventory/battery'
+              route: '/inventory/battery',
             },
             {
               icon: ClipboardList,
               label: 'Procurement Requests',
               color: 'text-orange-600',
-              route: '/inventory/procurementRequest'
+              route: '/inventory/procurementRequest',
             },
             {
               icon: AlertTriangle,
               label: 'Low Stock Alerts',
               color: 'text-red-600',
               badge: '3',
-              route: '/inventory/lowStock'
+              route: '/inventory/lowStock',
             },
-            { icon: Plus, label: 'Add Inventory Item', color: 'text-teal-600', route: '/inventory/addInventory' },
+            {
+              icon: Plus,
+              label: 'Add Inventory Item',
+              color: 'text-teal-600',
+              route: '/inventory/addInventory',
+            },
             {
               icon: Store,
               label: 'Vendors & Suppliers',
               color: 'text-purple-600',
-              route: '/inventory/store'
+              route: '/inventory/store',
             },
           ],
         },
@@ -328,37 +421,37 @@ const Sidebar = () => {
               icon: Users,
               label: 'Employee Directory',
               color: 'text-blue-600',
-              route: '/hr/employee'
+              route: '/hr/employee',
             },
             {
               icon: Building2,
               label: 'Departments & Roles',
               color: 'text-purple-600',
-              route: '/hr/roles'
+              route: '/hr/roles',
             },
             {
               icon: CalendarDays,
               label: 'Attendance & Leave',
               color: 'text-green-600',
-              route: '/hr/attendance'
+              route: '/hr/attendance',
             },
             {
               icon: BarChart2,
               label: 'Performance Reports',
               color: 'text-orange-600',
-              route: '/hr/performance'
+              route: '/hr/performance',
             },
             {
               icon: DollarSign,
               label: 'Payroll & Salary Info',
               color: 'text-emerald-600',
-              route: '/hr/salaryInfo'
+              route: '/hr/salaryInfo',
             },
             {
               icon: UserPlus,
               label: 'Add New Employee',
               color: 'text-teal-600',
-              route: '/hr/addNew'
+              route: '/hr/addNew',
             },
           ],
         },
@@ -376,17 +469,27 @@ const Sidebar = () => {
               label: 'Chat',
               color: 'text-blue-600',
               badge: '9',
-              route: '/communication/chat'
+              route: '/communication/chat',
             },
             { icon: Bell, label: 'Announcements', color: 'text-red-600' },
             {
               icon: Calendar,
               label: 'Meeting Scheduler',
               color: 'text-purple-600',
-              route: '/communication/meeting'
+              route: '/communication/meeting',
             },
-            { icon: Folder, label: 'Shared Files', color: 'text-gray-600', route: '/communication/sharedFiles' },
-            { icon: Send, label: 'Email Broadcasts', color: 'text-teal-600', route: '/communication/meeting' },
+            {
+              icon: Folder,
+              label: 'Shared Files',
+              color: 'text-gray-600',
+              route: '/communication/sharedFiles',
+            },
+            {
+              icon: Send,
+              label: 'Email Broadcasts',
+              color: 'text-teal-600',
+              route: '/communication/meeting',
+            },
           ],
         },
       ],
@@ -402,33 +505,43 @@ const Sidebar = () => {
               icon: BarChart3,
               label: 'Reports Overview',
               color: 'text-blue-600',
-              route: '/data/reportsOverview'
+              route: '/data/reportsOverview',
             },
             {
               icon: Building2,
               label: 'Department Reports',
               color: 'text-purple-600',
-              route: '/data/departmentReport'
+              route: '/data/departmentReport',
             },
             {
               icon: DollarSign,
               label: 'Financial Reports',
               color: 'text-green-600',
-              route: '/data/financialtReport'
+              route: '/data/financialtReport',
             },
             {
               icon: FolderKanban,
               label: 'Project Performance',
               color: 'text-orange-600',
-              route: '/data/projectsReport'
+              route: '/data/projectsReport',
             },
-            { icon: Plane, label: 'Drone Analytics', color: 'text-sky-600', route: '/data/droneReport' },
-            { icon: Download, label: 'Export Reports', color: 'text-gray-600', route: '/data/exportReport' },
+            {
+              icon: Plane,
+              label: 'Drone Analytics',
+              color: 'text-sky-600',
+              route: '/data/droneReport',
+            },
+            {
+              icon: Download,
+              label: 'Export Reports',
+              color: 'text-gray-600',
+              route: '/data/exportReport',
+            },
             {
               icon: Link,
               label: 'Sync to Main Portal',
               color: 'text-teal-600',
-              route: '/data/sync'
+              route: '/data/sync',
             },
           ],
         },
@@ -441,38 +554,54 @@ const Sidebar = () => {
           id: 'admin',
           label: 'SYSTEM ADMINISTRATION',
           items: [
-            { icon: UserCog, label: 'User Management', color: 'text-blue-600', route: '/admin/userManagement' },
+            {
+              icon: UserCog,
+              label: 'User Management',
+              color: 'text-blue-600',
+              route: '/admin/TeamPage',
+              // route: '/admin/userManagement',
+            },
             {
               icon: Shield,
               label: 'Roles & Permissions',
               color: 'text-purple-600',
-              route: '/admin/permissions' 
+              route: '/admin/permissions',
             },
             {
               icon: Building2,
               label: 'Organization Structure',
               color: 'text-gray-600',
-              route: '/admin/structure' 
+              route: '/admin/structure',
             },
             {
               icon: Lock,
               label: 'Authentication & Security',
               color: 'text-red-600',
-              route: '/admin/security' 
+              route: '/admin/security',
             },
             {
               icon: Cog,
               label: 'System Configurations',
               color: 'text-orange-600',
-              route: '/admin/configuration' 
+              route: '/admin/configuration',
             },
-            { icon: Layers, label: 'Integrations', color: 'text-teal-600', route: '/admin/integration'},
-            { icon: BookOpen, label: 'Audit Logs', color: 'text-indigo-600', route: '/admin/audit'},
+            {
+              icon: Layers,
+              label: 'Integrations',
+              color: 'text-teal-600',
+              route: '/admin/integration',
+            },
+            {
+              icon: BookOpen,
+              label: 'Audit Logs',
+              color: 'text-indigo-600',
+              route: '/admin/audit',
+            },
             {
               icon: Archive,
               label: 'Backups & Data Recovery',
               color: 'text-green-600',
-              route: '/admin/backup' 
+              route: '/admin/backup',
             },
           ],
         },
@@ -485,23 +614,43 @@ const Sidebar = () => {
           id: 'settings',
           label: 'USER PREFERENCES',
           items: [
-            { icon: Moon, label: 'Theme', color: 'text-indigo-600', route: '/settings/userReference'},
+            {
+              icon: Moon,
+              label: 'Theme',
+              color: 'text-indigo-600',
+              route: '/settings/settings',
+              // route: '/settings/userReference',
+            },
             {
               icon: Languages,
               label: 'Language & Region',
               color: 'text-blue-600',
-               route: '/settings/language'
-
+              route: '/settings/language',
             },
             {
               icon: BellRing,
               label: 'Notifications Settings',
               color: 'text-orange-600',
-               route: '/settings/notification'
+              route: '/settings/notification',
             },
-            { icon: Settings, label: 'Preferences', color: 'text-gray-600', route: '/settings/preference'},
-            { icon: Trash2, label: 'Clear Cache', color: 'text-yellow-600', route: '/settings/clearCache' },
-            { icon: LogOut, label: 'Logout', color: 'text-red-600', route: '/settings/logout'},
+            {
+              icon: Settings,
+              label: 'Preferences',
+              color: 'text-gray-600',
+              route: '/settings/preference',
+            },
+            {
+              icon: Trash2,
+              label: 'Clear Cache',
+              color: 'text-yellow-600',
+              route: '/settings/clearCache',
+            },
+            {
+              icon: LogOut,
+              label: 'Logout',
+              color: 'text-red-600',
+              route: '/settings/logout',
+            },
           ],
         },
       ],
@@ -525,7 +674,7 @@ const Sidebar = () => {
   const currentMenu = menuContent[activeMenu];
 
   return (
-    <div className='flex h-screen bg-gray-50'>
+    <div className="flex h-screen bg-gray-50">
       {/* Left Icon Sidebar */}
       <div
         className={`w-14 flex flex-col items-center py-4 space-y-3 relative ${
@@ -541,7 +690,7 @@ const Sidebar = () => {
 
         {/* Navigation Icons */}
         {sidebarIcons.map((item) => (
-          <div key={item.id} className='relative w-full flex justify-center'>
+          <div key={item.id} className="relative w-full flex justify-center">
             <motion.button
               onClick={() => setActiveMenu(item.id)}
               whileHover={activeMenu === item.id ? {} : { scale: 1.05 }}
@@ -552,8 +701,8 @@ const Sidebar = () => {
                     ? 'bg-white text-black'
                     : 'bg-white text-black'
                   : isDarkMode
-                  ? 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                    ? 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
               }`}
               title={item.label}
             >
@@ -567,9 +716,9 @@ const Sidebar = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className='absolute right-0 top-0 h-10 w-6 overflow-hidden'
+                  className="absolute right-0 top-0 h-10 w-6 overflow-hidden"
                 >
-                  <div className='absolute right-0 top-0 h-10 w-12 bg-white rounded-l-full'></div>
+                  <div className="absolute right-0 top-0 h-10 w-12 bg-white rounded-l-full"></div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -578,35 +727,35 @@ const Sidebar = () => {
       </div>
 
       {/* Main Sidebar Content */}
-      <div className='w-64 bg-white border-r border-gray-200 overflow-y-auto relative'>
-        <div className='absolute left-0 top-0 w-3 h-full pointer-events-none'>
+      <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto relative">
+        <div className="absolute left-0 top-0 w-3 h-full pointer-events-none">
           {sidebarIcons.map((item, index) => {
             const topPosition = 64 + index * 56;
             return activeMenu === item.id ? (
               <div
                 key={item.id}
-                className='absolute w-3 h-10 bg-white dark:bg-white rounded-l-lg transition-all duration-300'
+                className="absolute w-3 h-10 bg-white dark:bg-white rounded-l-lg transition-all duration-300"
                 style={{ top: `${topPosition}px` }}
               ></div>
             ) : null;
           })}
         </div>
 
-        <div className='p-4 pl-6'>
-          <AnimatePresence mode='wait'>
+        <div className="p-4 pl-6">
+          <AnimatePresence mode="wait">
             <motion.h2
               key={activeMenu}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
-              className='text-lg font-semibold text-gray-800 mb-6'
+              className="text-lg font-semibold text-gray-800 mb-6"
             >
               {currentMenu.title}
             </motion.h2>
           </AnimatePresence>
 
-          <AnimatePresence mode='wait'>
+          <AnimatePresence mode="wait">
             <motion.div
               key={activeMenu}
               initial={{ opacity: 0, x: -20 }}
@@ -615,15 +764,15 @@ const Sidebar = () => {
               transition={{ duration: 0.3, delay: 0.1 }}
             >
               {currentMenu.sections.map((section) => (
-                <div key={section.id} className='mb-6'>
+                <div key={section.id} className="mb-6">
                   <button
                     onClick={() => toggleSection(section.id)}
-                    className='flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700'
+                    className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
                   >
                     {expandedSections[section.id] ? (
-                      <ChevronDown size={14} className='mr-1' />
+                      <ChevronDown size={14} className="mr-1" />
                     ) : (
-                      <ChevronRight size={14} className='mr-1' />
+                      <ChevronRight size={14} className="mr-1" />
                     )}
                     {section.label}
                   </button>
@@ -635,20 +784,19 @@ const Sidebar = () => {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.2 }}
-                        className='space-y-1 ml-2'
+                        className="space-y-1 ml-2"
                       >
                         {section.items.map((item, index) => (
                           <div key={index}>
                             <div
+                              onClick={() => handleNavigation(item.route)}
                               className={`flex items-center justify-between px-3 py-2 text-sm rounded-md cursor-pointer ${
-                                item.active
-                                  ? 'bg-teal-50 text-teal-600 dark:text-teal-500'
-                                  : isDarkMode
-                                  ? 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                location.pathname === item.route
+                                  ? 'bg-teal-50 text-teal-600'
                                   : 'text-gray-700 hover:bg-black hover:text-gray-100'
                               }`}
                             >
-                              <div className='flex items-center flex-1'>
+                              <div className="flex items-center flex-1">
                                 <item.icon
                                   size={14}
                                   className={`mr-2 ${
@@ -658,7 +806,7 @@ const Sidebar = () => {
                                 <span>{item.label}</span>
                               </div>
                               {item.badge && (
-                                <span className='ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full'>
+                                <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
                                   {item.badge}
                                 </span>
                               )}

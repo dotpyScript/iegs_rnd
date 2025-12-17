@@ -6,7 +6,7 @@ import Input from '../../components/ui/Input';
 import { droneInventory } from '../../utils/dummyData';
 import { formatDate } from '../../utils/formatDate';
 
-const InventoryPage = () => {
+const InventoryOverview = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredInventory = droneInventory.filter((item) =>
@@ -168,5 +168,5 @@ const InventoryPage = () => {
   );
 };
 
-export default InventoryPage;
+export default InventoryOverview;
 

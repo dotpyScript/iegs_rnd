@@ -5,7 +5,7 @@ import BarChart from '../../components/charts/BarChart';
 import { accountingData } from '../../utils/dummyData';
 import { formatCurrency, formatPercentage } from '../../utils/formatCurrency';
 
-const AccountingPage = () => {
+const AccountingOverview = () => {
   const { revenue, expenses, budgetOverview } = accountingData;
 
   return (
@@ -160,5 +160,5 @@ const AccountingPage = () => {
   );
 };
 
-export default AccountingPage;
+export default AccountingOverview;
 
