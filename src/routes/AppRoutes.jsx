@@ -11,7 +11,7 @@ import OverviewPage from '../pages/Home/OverviewPage';
 // Department pages
 // import GISPage from '../pages/departments/GISPage';
 // import SurveyPage from '../pages/departments/SurveyPage';
-// import UASPage from '../pages/departments/UASPage';
+import RnDDashboard from '../pages/department/RnD';
 // import BusinessDevPage from '../pages/departments/BusinessDevPage';
 // import ITPage from '../pages/departments/ITPage';
 // import HRDepartmentPage from '../pages/departments/HRDepartmentPage';
@@ -116,9 +116,9 @@ const AppRoutes = () => {
       <Route path='/activity' element={<ActivityFeedPage />} />
       <Route path='/notifications' element={<NotificationsPage />} /> */}
       {/* Departments */}
+      <Route path="/RnDDashboard" element={<RnDDashboard />} />
       {/* <Route path='/departments/gis' element={<GISPage />} />
       <Route path='/departments/survey' element={<SurveyPage />} />
-      <Route path='/departments/uas' element={<UASPage />} />
       <Route path='/departments/business' element={<BusinessDevPage />} />
       <Route path='/departments/it' element={<ITPage />} />
       <Route path='/departments/hr' element={<HRDepartmentPage />} />
