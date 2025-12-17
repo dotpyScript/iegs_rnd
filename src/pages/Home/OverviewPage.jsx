@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import { FolderKanban, Users, MessageSquare, Award, Upload, CheckCircle, FileText, PieChart as PieChartIcon, TrendingUp, ClipboardCheck } from 'lucide-react';
-import KpiCard from '../components/cards/KpiCard';
-import ProjectCard from '../components/cards/ProjectCard';
-import TeamCard from '../components/cards/TeamCard';
-import QuickStatsWidget from '../components/cards/QuickStatsWidget';
-import PerformanceTrends from '../components/sections/PerformanceTrends';
-import LineChart from '../components/charts/LineChart';
-import BarChart from '../components/charts/BarChart';
-import PieChart from '../components/charts/PieChart';
-import WelcomeSection from '../components/layout/WelcomeSection';
-import { ThemeContext } from '../context/ThemeContext';
+import KpiCard from '../../components/cards/KpiCard';
+import ProjectCard from '../../components/cards/ProjectCard';
+import TeamCard from '../../components/cards/TeamCard';
+import QuickStatsWidget from '../../components/cards/QuickStatsWidget';
+import PerformanceTrends from '../../components/sections/PerformanceTrends';
+import LineChart from '../../components/charts/LineChart';
+import BarChart from '../../components/charts/BarChart';
+import PieChart from '../../components/charts/PieChart';
+import WelcomeSection from '../../components/layout/WelcomeSection';
+import { ThemeContext } from '../../context/ThemeContext';
 import {
   kpiData,
   budgetDistribution,
@@ -19,7 +19,7 @@ import {
   recentProjects,
   teamMembers,
   recentActivity,
-} from '../utils/dummyData';
+} from '../../utils/dummyData';
 
 const OverviewPage = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);

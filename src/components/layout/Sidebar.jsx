@@ -69,6 +69,7 @@ import {
   BellRing,
   Trash2,
   LogOut,
+  Route,
 } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
 
@@ -106,18 +107,18 @@ const Sidebar = () => {
           id: 'home',
           label: 'COMPANY OVERVIEW',
           items: [
-            { icon: LayoutGrid, label: 'Overview', color: 'text-blue-600' },
-            { icon: TrendingUp, label: 'Analytics', color: 'text-teal-600' },
+            { icon: LayoutGrid, label: 'Overview', color: 'text-blue-600', route: '/overview' },
+            { icon: TrendingUp, label: 'Analytics', color: 'text-teal-600', route: '/analytics'},
             {
               icon: Activity,
               label: 'Activity Feed',
-              color: 'text-orange-500',
+              color: 'text-orange-500', route: '/activity'
             },
             {
               icon: Bell,
               label: 'Notifications',
               color: 'text-red-500',
-              badge: '5',
+              badge: '5', route: '/notification'
             },
           ],
         },
@@ -130,34 +131,34 @@ const Sidebar = () => {
           id: 'departments',
           label: 'DEPARTMENT DASHBOARDS',
           items: [
-            { icon: Globe, label: 'GIS Department', color: 'text-green-600' },
-            { icon: Ruler, label: 'Survey Department', color: 'text-blue-500' },
+            { icon: Globe, label: 'GIS Department', color: 'text-green-600', route: '/gis' },
+            { icon: Ruler, label: 'Survey Department', color: 'text-blue-500', route: '/survey'},
             {
               icon: Cog,
               label: 'R&D UAS Department',
-              color: 'text-purple-600',
+              color: 'text-purple-600', route: '/rnd'
             },
 
             {
               icon: Briefcase,
               label: 'Business Development',
-              color: 'text-indigo-600',
+              color: 'text-indigo-600', route: 'business'
             },
-            { icon: Cpu, label: 'IT & Systems', color: 'text-cyan-600' },
+            { icon: Cpu, label: 'IT & Systems', color: 'text-cyan-600', route: '/system'},
             {
               icon: UserCircle,
               label: 'HR Department',
-              color: 'text-pink-600',
+              color: 'text-pink-600', route: '/hr'
             },
             {
               icon: FileText,
               label: 'Accounting Department',
-              color: 'text-emerald-600',
+              color: 'text-emerald-600', route: '/accounting'
             },
             {
               icon: ShoppingCart,
               label: 'Procurement & Logistics',
-              color: 'text-amber-600',
+              color: 'text-amber-600', route: '/procurement'
             },
           ],
         },
@@ -170,35 +171,35 @@ const Sidebar = () => {
           id: 'projects',
           label: 'PROJECT MANAGEMENT',
           items: [
-            { icon: Folder, label: 'All Projects', color: 'text-blue-600' },
+            { icon: Folder, label: 'All Projects', color: 'text-blue-600', route: '/project/project' },
             {
               icon: Calendar,
               label: 'Active Projects',
               color: 'text-green-600',
-              badge: '12',
+              badge: '12', route: '/project/active'
             },
             {
               icon: Clock,
               label: 'Pending / Upcoming',
               color: 'text-yellow-600',
-              badge: '8',
+              badge: '8', route: '/project/active'
             },
             {
               icon: CheckSquare,
               label: 'Completed Projects',
               color: 'text-gray-600',
-              badge: '24',
+              badge: '24', route: '/project/completed'
             },
-            { icon: Users, label: 'Assigned Teams', color: 'text-purple-600' },
+            { icon: Users, label: 'Assigned Teams', color: 'text-purple-600', route: '/project/assignedTeams' },
             {
               icon: Target,
               label: 'Milestones & Deliverables',
-              color: 'text-orange-600',
+              color: 'text-orange-600', route: '/project/milestone'
             },
             {
               icon: FilePlus,
               label: 'Create New Project',
-              color: 'text-teal-600',
+              color: 'text-teal-600', route: '/project/newProject'
             },
           ],
         },
@@ -211,18 +212,19 @@ const Sidebar = () => {
           id: 'drone',
           label: 'UAV DATA & ANALYTICS',
           items: [
-            { icon: PlaneTakeoff, label: 'Flight Logs', color: 'text-sky-600' },
+            { icon: PlaneTakeoff, label: 'Flight Logs', color: 'text-sky-600', route: '/drone/droneOverview' },
             {
               icon: BarChart3,
               label: 'Telemetry Analytics',
-              color: 'text-blue-600',
+              color: 'text-blue-600',  route: '/drone/telemetry'
             },
-            { icon: Camera, label: 'Flight Media', color: 'text-purple-600' },
-            { icon: TestTube, label: 'Test Reports', color: 'text-green-600' },
+            { icon: Camera, label: 'Flight Media', color: 'text-purple-600', route: '/drone/media' },
+            { icon: TestTube, label: 'Test Reports', color: 'text-green-600', route: '/drone/testReport' },
             {
               icon: Upload,
               label: 'Upload Flight Data',
               color: 'text-orange-600',
+              route: '/drone/uploadData'
             },
           ],
         },
@@ -235,32 +237,37 @@ const Sidebar = () => {
           id: 'accounting',
           label: 'FINANCIAL MANAGEMENT',
           items: [
-            { icon: Wallet, label: 'Overview', color: 'text-emerald-600' },
+            { icon: Wallet, label: 'Overview', color: 'text-emerald-600', route: '/accounting/accountingOverview' },
             {
               icon: TrendingDown,
               label: 'Expenditures',
               color: 'text-red-600',
+              route: '/accounting/expenditure'
             },
             {
               icon: Receipt,
               label: 'Invoices & Receipts',
               color: 'text-blue-600',
+              route: '/accounting/invoice'
             },
             {
               icon: FileText,
               label: 'Expense Categories',
               color: 'text-indigo-600',
+              route: '/accounting/expense'
             },
-            { icon: Coins, label: 'Fund Requests', color: 'text-yellow-600' },
+            { icon: Coins, label: 'Fund Requests', color: 'text-yellow-600', route: '/accounting/fundRequest' },
             {
               icon: Building,
               label: 'Departmental Budgets',
               color: 'text-purple-600',
+              route: '/accounting/budget'
             },
             {
               icon: Banknote,
               label: 'Payments & Payroll',
               color: 'text-green-600',
+               route: '/accounting/payments'
             },
           ],
         },
@@ -273,33 +280,38 @@ const Sidebar = () => {
           id: 'inventory',
           label: 'INVENTORY MANAGEMENT',
           items: [
-            { icon: Box, label: 'Inventory Overview', color: 'text-blue-600' },
+            { icon: Box, label: 'Inventory Overview', color: 'text-blue-600', route: '/inventory/inventoryOverview' },
             {
               icon: Wrench,
               label: 'Equipment & Hardware',
               color: 'text-gray-600',
+               route: '/inventory/equipment'
             },
             {
               icon: Battery,
               label: 'Consumables & Parts',
               color: 'text-green-600',
+              route: '/inventory/battery'
             },
             {
               icon: ClipboardList,
               label: 'Procurement Requests',
               color: 'text-orange-600',
+              route: '/inventory/procurementRequest'
             },
             {
               icon: AlertTriangle,
               label: 'Low Stock Alerts',
               color: 'text-red-600',
               badge: '3',
+              route: '/inventory/lowStock'
             },
-            { icon: Plus, label: 'Add Inventory Item', color: 'text-teal-600' },
+            { icon: Plus, label: 'Add Inventory Item', color: 'text-teal-600', route: '/inventory/addInventory' },
             {
               icon: Store,
               label: 'Vendors & Suppliers',
               color: 'text-purple-600',
+              route: '/inventory/store'
             },
           ],
         },
@@ -316,31 +328,37 @@ const Sidebar = () => {
               icon: Users,
               label: 'Employee Directory',
               color: 'text-blue-600',
+              route: '/hr/employee'
             },
             {
               icon: Building2,
               label: 'Departments & Roles',
               color: 'text-purple-600',
+              route: '/hr/roles'
             },
             {
               icon: CalendarDays,
               label: 'Attendance & Leave',
               color: 'text-green-600',
+              route: '/hr/attendance'
             },
             {
               icon: BarChart2,
               label: 'Performance Reports',
               color: 'text-orange-600',
+              route: '/hr/performance'
             },
             {
               icon: DollarSign,
               label: 'Payroll & Salary Info',
               color: 'text-emerald-600',
+              route: '/hr/salaryInfo'
             },
             {
               icon: UserPlus,
               label: 'Add New Employee',
               color: 'text-teal-600',
+              route: '/hr/addNew'
             },
           ],
         },
@@ -358,15 +376,17 @@ const Sidebar = () => {
               label: 'Chat',
               color: 'text-blue-600',
               badge: '9',
+              route: '/communication/chat'
             },
             { icon: Bell, label: 'Announcements', color: 'text-red-600' },
             {
               icon: Calendar,
               label: 'Meeting Scheduler',
               color: 'text-purple-600',
+              route: '/communication/meeting'
             },
-            { icon: Folder, label: 'Shared Files', color: 'text-gray-600' },
-            { icon: Send, label: 'Email Broadcasts', color: 'text-teal-600' },
+            { icon: Folder, label: 'Shared Files', color: 'text-gray-600', route: '/communication/sharedFiles' },
+            { icon: Send, label: 'Email Broadcasts', color: 'text-teal-600', route: '/communication/meeting' },
           ],
         },
       ],
@@ -382,11 +402,13 @@ const Sidebar = () => {
               icon: BarChart3,
               label: 'Reports Overview',
               color: 'text-blue-600',
+              route: '/data/reportsOverview'
             },
             {
               icon: Building2,
               label: 'Department Reports',
               color: 'text-purple-600',
+              route: '/data/departmentReport'
             },
             {
               icon: DollarSign,
