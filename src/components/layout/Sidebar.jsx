@@ -153,18 +153,19 @@ const Sidebar = () => {
           label: 'DEPARTMENT DASHBOARDS',
           items: [
             {
+              icon: Globe,
+              label: 'GIS Department',
+              color: 'text-green-600',
+              route: '/GISDashboard',
+            },
+
+            {
               icon: Cog,
               label: 'R&D UAS Department',
               color: 'text-purple-600',
               route: '/RnDDashboard',
             },
 
-            {
-              icon: Globe,
-              label: 'GIS Department',
-              color: 'text-green-600',
-              route: '/gis',
-            },
             {
               icon: Ruler,
               label: 'Survey Department',

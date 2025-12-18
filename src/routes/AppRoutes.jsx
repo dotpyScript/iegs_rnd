@@ -94,6 +94,7 @@ import TeamPage from '../pages/admin/TeamPage';
 
 // Settings pages
 import SettingsPage from '../pages/settings/SettingsPage';
+import GISDashboard from '../pages/department/GIS';
 // import ThemeSettingsPage from '../pages/settings/ThemeSettingsPage';
 // import LanguagePage from '../pages/settings/LanguagePage';
 // import NotificationSettingsPage from '../pages/settings/NotificationSettingsPage';
@@ -116,8 +117,9 @@ const AppRoutes = () => {
       <Route path='/activity' element={<ActivityFeedPage />} />
       <Route path='/notifications' element={<NotificationsPage />} /> */}
       {/* Departments */}
+      <Route path="/GISDashboard" element={<GISDashboard />} />
       <Route path="/RnDDashboard" element={<RnDDashboard />} />
-      {/* <Route path='/departments/gis' element={<GISPage />} />
+      {/* 
       <Route path='/departments/survey' element={<SurveyPage />} />
       <Route path='/departments/business' element={<BusinessDevPage />} />
       <Route path='/departments/it' element={<ITPage />} />
