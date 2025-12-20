@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-white border-t border-gray-200 px-4 lg:px-6 py-4 mt-auto">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
         <p className="text-gray-600 font-medium flex items-center gap-1.5">
-          © {currentYear} IEGS R&D Admin Portal. Made with 
+          © {currentYear} IEGS Portal. Made with 
           <Heart className="w-3 h-3 text-red-500 fill-current inline" /> 
           by IEGS Team
         </p>

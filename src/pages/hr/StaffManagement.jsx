@@ -347,11 +347,10 @@ const StaffManagement = () => {
 
             <div className="flex items-center justify-between pt-3 border-t-2 border-gray-100">
               <span
-                className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                  emp.status === 'Active'
-                    ? 'bg-gray-900 text-white'
-                    : 'bg-gray-200 text-gray-700'
-                }`}
+                className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${emp.status === 'Active'
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-gray-200 text-gray-700'
+                  }`}
               >
                 {emp.status}
               </span>
@@ -515,13 +514,12 @@ const StaffManagement = () => {
                   </td>
                   <td className="px-5 py-3 whitespace-nowrap">
                     <span
-                      className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                        record.status === 'Present'
-                          ? 'bg-gray-900 text-white'
-                          : record.status === 'Late'
-                            ? 'bg-gray-300 text-gray-700'
-                            : 'bg-gray-100 text-gray-600'
-                      }`}
+                      className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${record.status === 'Present'
+                        ? 'bg-gray-900 text-white'
+                        : record.status === 'Late'
+                          ? 'bg-gray-300 text-gray-700'
+                          : 'bg-gray-100 text-gray-600'
+                        }`}
                     >
                       {record.status}
                     </span>
@@ -767,11 +765,10 @@ const StaffManagement = () => {
                     </td>
                     <td className="px-5 py-3 whitespace-nowrap">
                       <span
-                        className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                          idx % 3 === 0
-                            ? 'bg-gray-900 text-white'
-                            : 'bg-gray-200 text-gray-700'
-                        }`}
+                        className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${idx % 3 === 0
+                          ? 'bg-gray-900 text-white'
+                          : 'bg-gray-200 text-gray-700'
+                          }`}
                       >
                         {idx % 3 === 0 ? 'Paid' : 'Pending'}
                       </span>
@@ -863,85 +860,85 @@ const StaffManagement = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="h-screen flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b-2 border-gray-200 px-6 py-4 rounded-md">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center justify-center gap-6">
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">
-                  Staff Management
-                </h1>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  Manage your team and HR operations
-                </p>
+        <div className="px-6 py-4 bg-gray-50 border-gray-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="flex items-center justify-center gap-6">
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">
+                    Staff Management
+                  </h1>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Manage your team and HR operations
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* View Switcher */}
-            <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
-              {views.map((view) => (
-                <div key={view.id} className="relative group">
+              {/* View Switcher and Action Buttons Container */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+                {/* View Switcher */}
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
+                  {views.map((view) => (
+                    <div key={view.id} className="relative group">
+                      <button
+                        onClick={() => setActiveView(view.id)}
+                        className={`p-2 rounded transition-all ${activeView === view.id
+                          ? 'bg-white text-black'
+                          : 'text-gray-600 hover:text-gray-900'
+                          }`}
+                        title={view.tooltip}
+                      >
+                        <view.icon size={18} />
+                      </button>
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        {view.tooltip}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                   <button
-                    onClick={() => setActiveView(view.id)}
-                    className={`p-2 rounded transition-all ${
-                      activeView === view.id
-                        ? 'bg-white text-black'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
-                    title={view.tooltip}
+                    onClick={() => setShowLeaveDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="Request Leave"
                   >
-                    <view.icon size={18} />
+                    <Calendar size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Request Leave</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      Request Leave
+                    </div>
                   </button>
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    {view.tooltip}
-                  </div>
-                </div>
-              ))}
-            </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2">
-              <div className="relative group">
-                <button
-                  onClick={() => setShowLeaveDialog(true)}
-                  className="p-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all"
-                  title="Request Leave"
-                >
-                  <Calendar size={18} />
-                </button>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  Request Leave
-                </div>
-              </div>
+                  <button
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="Export Data"
+                  >
+                    <Download size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Export</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      Export Data
+                    </div>
+                  </button>
 
-              <div className="relative group">
-                <button
-                  className="p-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all"
-                  title="Export Data"
-                >
-                  <Download size={18} />
-                </button>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  Export Data
+                  <button
+                    onClick={() => setShowAddDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 hover:shadow-lg transition-all duration-200 font-medium"
+                    title="Add New Employee"
+                  >
+                    <UserPlus size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium hidden lg:inline">Add Employee</span>
+                  </button>
                 </div>
-              </div>
-
-              <div className="relative group">
-                <button
-                  onClick={() => setShowAddDialog(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all"
-                  title="Add New Employee"
-                >
-                  <UserPlus size={18} />
-                  <span className="text-sm font-medium">Add Employee</span>
-                </button>
               </div>
             </div>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto mt-8">
           <div className="max-w-7xl mx-auto px-6 py-6">
             {activeView === 'directory' && renderDirectory()}
             {activeView === 'departments' && renderDepartments()}
@@ -1016,10 +1013,10 @@ const StaffManagement = () => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                    <label htmlFor="department" className="block text-xs font-medium text-gray-700 mb-1.5">
                       Department
                     </label>
-                    <select className="w-full px-3 py-2 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+                    <select id="department" className="w-full px-3 py-2 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
                       <option>Engineering</option>
                       <option>Design</option>
                       <option>Product</option>
@@ -1090,7 +1087,7 @@ const StaffManagement = () => {
 
             <form className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                <label htmlFor='Leave Type' className="block text-xs font-medium text-gray-700 mb-1.5">
                   Leave Type
                 </label>
                 <select className="w-full px-3 py-2 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
@@ -1103,7 +1100,7 @@ const StaffManagement = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  <label htmlFor="start-date" className="block text-xs font-medium text-gray-700 mb-1.5">
                     Start Date
                   </label>
                   <input
@@ -1112,7 +1109,7 @@ const StaffManagement = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  <label htmlFor='end-date' className="block text-xs font-medium text-gray-700 mb-1.5">
                     End Date
                   </label>
                   <input
@@ -1123,10 +1120,11 @@ const StaffManagement = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                <label htmlFor='reason' className="block text-xs font-medium text-gray-700 mb-1.5">
                   Reason
                 </label>
                 <textarea
+                  id='reason'
                   rows={4}
                   className="w-full px-3 py-2 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors resize-none"
                   placeholder="Please provide a reason for your leave request..."

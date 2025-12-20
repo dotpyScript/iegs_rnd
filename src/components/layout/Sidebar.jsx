@@ -86,6 +86,7 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
   const isDarkMode = theme === 'dark';
   const [activeMenu, setActiveMenu] = useState('home');
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     home: true,
     departments: true,
@@ -679,33 +680,40 @@ const Sidebar = () => {
     <div className="flex h-screen bg-gray-50">
       {/* Left Icon Sidebar */}
       <div
-        className={`w-14 flex flex-col items-center py-4 space-y-3 relative ${
-          isDarkMode ? 'bg-black' : 'bg-black'
-        }`}
+        className={`w-14 flex flex-col items-center py-4 space-y-3 relative ${isDarkMode ? 'bg-black' : 'bg-black'
+          }`}
       >
         {/* Logo */}
-        <div
-          className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl mb-4 ${
-            isDarkMode ? 'bg-gray-800' : 'bg-gray-800'
-          }`}
-        ></div>
+        <motion.button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          animate={{ rotate: isCollapsed ? 180 : 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl mb-4 transition-all duration-300 hover:bg-gray-700"
+          title="Toggle Sidebar"
+        >
+          <span>≡</span>
+        </motion.button>
 
         {/* Navigation Icons */}
         {sidebarIcons.map((item) => (
           <div key={item.id} className="relative w-full flex justify-center">
             <motion.button
-              onClick={() => setActiveMenu(item.id)}
+              onClick={() => {
+                setActiveMenu(item.id);
+                setIsCollapsed(false);
+              }}
               whileHover={activeMenu === item.id ? {} : { scale: 1.05 }}
               whileTap={activeMenu === item.id ? {} : { scale: 0.95 }}
-              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 relative z-10 ${
-                activeMenu === item.id
-                  ? isDarkMode
-                    ? 'bg-white text-black'
-                    : 'bg-white text-black'
-                  : isDarkMode
-                    ? 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-              }`}
+              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 relative z-10 ${activeMenu === item.id
+                ? isDarkMode
+                  ? 'bg-white text-black'
+                  : 'bg-white text-black'
+                : isDarkMode
+                  ? 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                }`}
               title={item.label}
             >
               <item.icon size={20} />
@@ -729,103 +737,112 @@ const Sidebar = () => {
       </div>
 
       {/* Main Sidebar Content */}
-      <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto relative">
-        <div className="absolute left-0 top-0 w-3 h-full pointer-events-none">
-          {sidebarIcons.map((item, index) => {
-            const topPosition = 64 + index * 56;
-            return activeMenu === item.id ? (
-              <div
-                key={item.id}
-                className="absolute w-3 h-10 bg-white dark:bg-white rounded-l-lg transition-all duration-300"
-                style={{ top: `${topPosition}px` }}
-              ></div>
-            ) : null;
-          })}
-        </div>
+      <AnimatePresence>
+        {!isCollapsed && (
+          <motion.div
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: 256 }}
+            exit={{ opacity: 0, width: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="bg-white border-r border-gray-200 overflow-hidden relative"
+          >
+            <div className="w-64 overflow-y-auto h-screen">
+              <div className="absolute left-0 top-0 w-3 h-full pointer-events-none">
+                {sidebarIcons.map((item, index) => {
+                  const topPosition = 64 + index * 56;
+                  return activeMenu === item.id ? (
+                    <div
+                      key={item.id}
+                      className="absolute w-3 h-10 bg-white dark:bg-white rounded-l-lg transition-all duration-300"
+                      style={{ top: `${topPosition}px` }}
+                    ></div>
+                  ) : null;
+                })}
+              </div>
 
-        <div className="p-4 pl-6">
-          <AnimatePresence mode="wait">
-            <motion.h2
-              key={activeMenu}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.3 }}
-              className="text-lg font-semibold text-gray-800 mb-6"
-            >
-              {currentMenu.title}
-            </motion.h2>
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeMenu}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
-              {currentMenu.sections.map((section) => (
-                <div key={section.id} className="mb-6">
-                  <button
-                    onClick={() => toggleSection(section.id)}
-                    className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
+              <div className="p-4 pl-6">
+                <AnimatePresence mode="wait">
+                  <motion.h2
+                    key={activeMenu}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-lg font-semibold text-gray-800 mb-6"
                   >
-                    {expandedSections[section.id] ? (
-                      <ChevronDown size={14} className="mr-1" />
-                    ) : (
-                      <ChevronRight size={14} className="mr-1" />
-                    )}
-                    {section.label}
-                  </button>
+                    {currentMenu.title}
+                  </motion.h2>
+                </AnimatePresence>
 
-                  <AnimatePresence>
-                    {expandedSections[section.id] && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="space-y-1 ml-2"
-                      >
-                        {section.items.map((item, index) => (
-                          <div key={index}>
-                            <div
-                              // role="button"
-                              // tabIndex={0}
-                              onClick={() => handleNavigation(item.route)}
-                              className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer ${
-                                location.pathname === item.route
-                                  ? 'bg-teal-50 text-teal-600'
-                                  : 'text-gray-700 hover:bg-black hover:text-gray-100'
-                              }`}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeMenu}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
+                    {currentMenu.sections.map((section) => (
+                      <div key={section.id} className="mb-6">
+                        <button
+                          onClick={() => toggleSection(section.id)}
+                          className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
+                        >
+                          {expandedSections[section.id] ? (
+                            <ChevronDown size={14} className="mr-1" />
+                          ) : (
+                            <ChevronRight size={14} className="mr-1" />
+                          )}
+                          {section.label}
+                        </button>
+
+                        <AnimatePresence>
+                          {expandedSections[section.id] && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="space-y-1 ml-2"
                             >
-                              <div className="flex items-center flex-1">
-                                <item.icon
-                                  size={14}
-                                  className={`mr-2 ${
-                                    item.color || 'text-gray-400'
-                                  }`}
-                                />
-                                <span>{item.label}</span>
-                              </div>
-                              {item.badge && (
-                                <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
-                                  {item.badge}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
+                              {section.items.map((item, index) => (
+                                <div key={index}>
+                                  <div
+
+                                    onClick={() => handleNavigation(item.route)}
+                                    className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer transition-all duration-200 ${location.pathname === item.route
+                                      ? 'bg-teal-50 text-teal-600'
+                                      : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                      }`}
+                                  >
+                                    <div className="flex items-center flex-1">
+                                      <item.icon
+                                        size={14}
+                                        className={`mr-2 ${item.color || 'text-gray-400'
+                                          }`}
+                                      />
+                                      <span>{item.label}</span>
+                                    </div>
+                                    {item.badge && (
+                                      <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
+                                        {item.badge}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

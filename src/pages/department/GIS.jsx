@@ -4,8 +4,8 @@ import {
   MapPin,
   Layers,
   Globe,
-  Satellite,
-  Navigation,
+  // Satellite,
+  // Navigation,
   TrendingUp,
   Users,
   Database,
@@ -504,21 +504,21 @@ const GISDashboard = () => {
       case 'completed':
         return 'bg-green-600 text-white';
       case 'in-progress':
-        return 'bg-blue-600 text-white';
+        return 'bg-slate-600 text-white';
       case 'planning':
-        return 'bg-yellow-500 text-white';
+        return 'bg-slate-500 text-white';
       case 'upcoming':
         return 'bg-gray-300 text-gray-700';
       case 'active':
         return 'bg-green-600 text-white';
       case 'processing':
-        return 'bg-blue-500 text-white';
+        return 'bg-slate-500 text-white';
       case 'maintenance':
         return 'bg-orange-500 text-white';
       case 'available':
         return 'bg-green-600 text-white';
       case 'in use':
-        return 'bg-blue-600 text-white';
+        return 'bg-slate-600 text-white';
       default:
         return 'bg-gray-400 text-white';
     }
@@ -614,7 +614,7 @@ const GISDashboard = () => {
             {projects.slice(0, 3).map((project) => (
               <div
                 key={project.id}
-                className="p-4 border-2 border-gray-100 rounded-lg hover:border-blue-500 transition-all cursor-pointer"
+                className="p-4 border-2 border-gray-100 rounded-lg hover:border-grey-800 transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
@@ -736,24 +736,24 @@ const GISDashboard = () => {
             {
               icon: Download,
               label: 'Export Data',
-              action: () => {},
+              action: () => { },
               color: 'indigo',
             },
             {
               icon: Share2,
               label: 'Share Map',
-              action: () => {},
+              action: () => { },
               color: 'pink',
             },
           ].map((item, idx) => (
             <button
               key={idx}
               onClick={item.action}
-              className={`flex flex-col items-center gap-2 p-4 border-2 border-gray-200 rounded-lg hover:bg-${item.color}-50 hover:border-${item.color}-500 transition-all group`}
+              className={`flex flex-col items-center gap-2 p-4 border-2 border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-900 transition-all group`}
             >
               <item.icon
                 size={24}
-                className={`text-gray-600 group-hover:text-${item.color}-600`}
+                className={`text-gray-600`}
               />
               <span className="text-xs font-medium text-gray-700 text-center">
                 {item.label}
@@ -777,7 +777,7 @@ const GISDashboard = () => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
-              className="bg-blue-600 h-2 rounded-full"
+              className="bg-black h-2 rounded-full"
               style={{ width: '48%' }}
             />
           </div>
@@ -803,7 +803,7 @@ const GISDashboard = () => {
             </h4>
           </div>
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+            <div className="w-3 h-3 bg-gray-900 rounded-full animate-pulse" />
             <span className="text-2xl font-bold text-gray-900">Optimal</span>
           </div>
           <div className="text-xs text-gray-600">All systems operational</div>
@@ -824,7 +824,7 @@ const GISDashboard = () => {
           <input
             type="text"
             placeholder="Search projects..."
-            className="w-full pl-10 pr-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
           />
         </div>
         <button className="flex items-center gap-2 px-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
@@ -833,7 +833,7 @@ const GISDashboard = () => {
         </button>
         <button
           onClick={() => setShowProjectDialog(true)}
-          className="flex items-center gap-2 px-4 py-2.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium"
+          className="flex items-center gap-2 px-4 py-2.5 text-sm bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium"
         >
           <Plus size={18} />
           New Project
@@ -845,7 +845,7 @@ const GISDashboard = () => {
         {projects.map((project, idx) => (
           <div
             key={project.id}
-            className="border-2 border-gray-200 rounded-lg bg-white hover:border-blue-500 hover:shadow-lg transition-all duration-300 animate-slideUp"
+            className="border-2 border-gray-200 rounded-lg bg-white hover:border-gray-900 hover:shadow-lg transition-all duration-300 animate-slideUp"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
             <div className="p-5">
@@ -869,7 +869,7 @@ const GISDashboard = () => {
                     <span
                       className={`w-2.5 h-2.5 rounded-full ${getPriorityColor(project.priority)}`}
                     />
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
                       {project.type}
                     </span>
                     <span
@@ -933,7 +933,7 @@ const GISDashboard = () => {
                       {Math.ceil(
                         (new Date(project.endDate) -
                           new Date(project.startDate)) /
-                          (1000 * 60 * 60 * 24 * 30)
+                        (1000 * 60 * 60 * 24 * 30)
                       )}
                       m
                     </div>
@@ -957,7 +957,7 @@ const GISDashboard = () => {
                   {project.team.map((member, i) => (
                     <div
                       key={i}
-                      className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-semibold border-2 border-white hover:z-10 hover:scale-110 transition-transform cursor-pointer"
+                      className="w-8 h-8 bg-gray-700 text-white rounded-full flex items-center justify-center text-xs font-semibold border-2 border-white hover:z-10 hover:scale-110 transition-transform cursor-pointer"
                     >
                       {member}
                     </div>
@@ -968,19 +968,19 @@ const GISDashboard = () => {
               {/* Metrics */}
               <div className="grid grid-cols-3 gap-4 ml-8 mb-4">
                 <div className="text-center p-3 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold text-gray-700">
                     {project.metrics.mapped}
                   </div>
                   <div className="text-xs text-gray-600">Features Mapped</div>
                 </div>
                 <div className="text-center p-3 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
+                  <div className="text-2xl font-bold text-gray-700">
                     {project.metrics.analyzed}
                   </div>
                   <div className="text-xs text-gray-600">Analyzed</div>
                 </div>
                 <div className="text-center p-3 bg-purple-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">
+                  <div className="text-2xl font-bold text-gray-700">
                     {project.metrics.validated}
                   </div>
                   <div className="text-xs text-gray-600">Validated</div>
@@ -999,7 +999,7 @@ const GISDashboard = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-slate-200 to-slate-900 h-3 rounded-full transition-all duration-500"
                     style={{ width: `${project.progress}%` }}
                   />
                 </div>
@@ -1061,15 +1061,15 @@ const GISDashboard = () => {
                   </div>
 
                   <div className="mt-4 flex gap-2">
-                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900 transition-all">
                       <Map size={14} />
                       View on Map
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900  transition-all">
                       <FileText size={14} />
                       Project Report
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                    <button className="flex items-center gap-2 px-4 py-2 text-sm border-2 border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900 transition-all">
                       <Share2 size={14} />
                       Share
                     </button>
@@ -1094,11 +1094,10 @@ const GISDashboard = () => {
               <button
                 key={type}
                 onClick={() => setMapView(type.toLowerCase())}
-                className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${
-                  mapView === type.toLowerCase()
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${mapView === type.toLowerCase()
+                  ? 'bg-black text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
               >
                 {type}
               </button>
@@ -1108,25 +1107,25 @@ const GISDashboard = () => {
         <div className="h-6 w-px bg-gray-300" />
         <div className="flex gap-2">
           <button
-            className="p-2 border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+            className="p-2 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-800 hover:border-gray-900 transition-all"
             title="Zoom In"
           >
             <Plus size={16} />
           </button>
           <button
-            className="p-2 border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+            className="p-2 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-800 hover:border-gray-900 transition-all"
             title="Zoom Out"
           >
             <Minimize size={16} />
           </button>
           <button
-            className="p-2 border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+            className="p-2 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-800 hover:border-gray-900 transition-all"
             title="Fit to Extent"
           >
             <Maximize size={16} />
           </button>
           <button
-            className="p-2 border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
+            className="p-2 border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-800 hover:border-gray-900 transition-all"
             title="Refresh"
           >
             <RefreshCw size={16} />
@@ -1134,15 +1133,15 @@ const GISDashboard = () => {
         </div>
         <div className="h-6 w-px bg-gray-300" />
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900 transition-all">
             <Ruler size={14} />
             Measure
           </button>
-          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900 transition-all">
             <MapPin size={14} />
             Add Point
           </button>
-          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+          <button className="flex items-center gap-2 px-3 py-2 text-xs font-medium border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-slate-900 hover:border-gray-900 transition-all">
             <Download size={14} />
             Export
           </button>
@@ -1218,8 +1217,8 @@ const GISDashboard = () => {
                       <input
                         type="checkbox"
                         checked={layer.visible}
-                        onChange={() => {}}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        onChange={() => { }}
+                        className="w-4 h-4 text-slate-900 border-gray-300 rounded focus:ring-gray-900"
                       />
                       <span className="text-xs font-medium text-gray-900">
                         {layer.name}
@@ -1228,7 +1227,7 @@ const GISDashboard = () => {
                     <Eye
                       size={14}
                       className={
-                        layer.visible ? 'text-blue-600' : 'text-gray-400'
+                        layer.visible ? 'text-black' : 'text-gray-400'
                       }
                     />
                   </div>
@@ -1245,7 +1244,7 @@ const GISDashboard = () => {
                       min="0"
                       max="100"
                       value={layer.opacity}
-                      onChange={() => {}}
+                      onChange={() => { }}
                       className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
                   </div>
@@ -1391,13 +1390,12 @@ const GISDashboard = () => {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
-                  className={`h-2 rounded-full ${
-                    dataset.quality >= 90
-                      ? 'bg-green-600'
-                      : dataset.quality >= 80
-                        ? 'bg-blue-600'
-                        : 'bg-yellow-600'
-                  }`}
+                  className={`h-2 rounded-full ${dataset.quality >= 90
+                    ? 'bg-green-600'
+                    : dataset.quality >= 80
+                      ? 'bg-blue-600'
+                      : 'bg-yellow-600'
+                    }`}
                   style={{ width: `${dataset.quality}%` }}
                 />
               </div>
@@ -1520,7 +1518,7 @@ const GISDashboard = () => {
         <div className="p-5 border-b-2 border-gray-200">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-bold text-gray-900">Recent Analyses</h3>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+            <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium">
               <Plus size={18} />
               New Analysis
             </button>
@@ -1668,13 +1666,12 @@ const GISDashboard = () => {
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div
-                  className={`p-2 rounded-lg ${
-                    equip.status === 'Available'
-                      ? 'bg-green-100'
-                      : equip.status === 'In Use'
-                        ? 'bg-blue-100'
-                        : 'bg-orange-100'
-                  }`}
+                  className={`p-2 rounded-lg ${equip.status === 'Available'
+                    ? 'bg-green-100'
+                    : equip.status === 'In Use'
+                      ? 'bg-blue-100'
+                      : 'bg-orange-100'
+                    }`}
                 >
                   <Radio
                     size={20}
@@ -1836,11 +1833,10 @@ const GISDashboard = () => {
                 </div>
               </div>
               <span
-                className={`px-2.5 py-1 text-xs font-medium rounded-full ${
-                  item.status === 'urgent'
-                    ? 'bg-red-100 text-red-700'
-                    : 'bg-blue-100 text-blue-700'
-                }`}
+                className={`px-2.5 py-1 text-xs font-medium rounded-full ${item.status === 'urgent'
+                  ? 'bg-red-100 text-red-700'
+                  : 'bg-blue-100 text-blue-700'
+                  }`}
               >
                 {item.status.toUpperCase()}
               </span>
@@ -1853,7 +1849,344 @@ const GISDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <style>{`
+      <div className="h-screen flex flex-col">
+        {/* Header */}
+        <div className="px-6 py-4 bg-gray-50 border-gray-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="flex items-center justify-center gap-6">
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">
+                    GIS Department
+                  </h1>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Geographic Information Systems & Spatial Analysis
+                  </p>
+                </div>
+              </div>
+
+              {/* View Switcher and Action Buttons Container */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+                {/* View Switcher */}
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg overflow-x-auto">
+                  {views.map((view) => (
+                    <div key={view.id} className="relative group">
+                      <button
+                        onClick={() => setActiveView(view.id)}
+                        className={`p-2 rounded transition-all whitespace-nowrap ${activeView === view.id
+                          ? 'bg-white text-black'
+                          : 'text-gray-600 hover:text-gray-900'
+                          }`}
+                        title={view.tooltip}
+                      >
+                        <view.icon size={18} />
+                      </button>
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        {view.tooltip}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={() => setShowDatasetDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="Upload Dataset"
+                  >
+                    <Upload size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Upload</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      Upload Dataset
+                    </div>
+                  </button>
+
+                  <button
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="Export Project"
+                  >
+                    <Download size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Export</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      Export Project
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setShowProjectDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 hover:shadow-lg transition-all duration-200 font-medium"
+                    title="New Project"
+                  >
+                    <Plus size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium hidden lg:inline">New Project</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto mt-8">
+          <div className="max-w-7xl mx-auto px-6 py-6">
+            {activeView === 'overview' && renderOverview()}
+            {activeView === 'projects' && renderProjects()}
+            {activeView === 'map-viewer' && renderMapViewer()}
+            {activeView === 'datasets' && renderDatasets()}
+            {activeView === 'analysis' && renderAnalysis()}
+            {activeView === 'equipment' && renderEquipment()}
+          </div>
+        </div>
+
+        {/* Project Dialog */}
+        {showProjectDialog && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b-2 border-gray-200 flex items-center justify-between sticky top-0 bg-white">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Create New Project
+                </h2>
+                <button
+                  onClick={() => setShowProjectDialog(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <label htmlFor='project-name' className="block text-sm font-medium text-gray-900 mb-2">
+                    Project Name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="Enter project name"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor='project-type' className="block text-sm font-medium text-gray-900 mb-2">
+                      Project Type
+                    </label>
+                    <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+                      <option>Urban Development</option>
+                      <option>Environmental</option>
+                      <option>Transportation</option>
+                      <option>Agriculture</option>
+                      <option>Infrastructure</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor='project-priority' className="block text-sm font-medium text-gray-900 mb-2">
+                      Priority
+                    </label>
+                    <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+                      <option>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor='project-description' className="block text-sm font-medium text-gray-900 mb-2">
+                    Description
+                  </label>
+                  <textarea
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    rows="4"
+                    placeholder="Enter project description"
+                  ></textarea>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor='project-start-date' className="block text-sm font-medium text-gray-900 mb-2">
+                      Start Date
+                    </label>
+                    <input
+                      type="date"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor='project-end-date' className="block text-sm font-medium text-gray-900 mb-2">
+                      End Date
+                    </label>
+                    <input
+                      type="date"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor='project-coverage-area' className="block text-sm font-medium text-gray-900 mb-2">
+                      Coverage Area (km²)
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                      placeholder="0.00"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor='project-lead' className="block text-sm font-medium text-gray-900 mb-2">
+                      Project Lead
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                      placeholder="Enter lead name"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor='project-coordinates' className="block text-sm font-medium text-gray-900 mb-2">
+                    Coordinates (Lat, Long)
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="e.g., 6.5244° N, 3.3792° E"
+                  />
+                </div>
+                <div>
+                  <label htmlFor='project-stakeholders' className="block text-sm font-medium text-gray-900 mb-2">
+                    Stakeholders
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="Comma-separated stakeholders"
+                  />
+                </div>
+              </div>
+              <div className="p-6 border-t-2 border-gray-200 flex gap-3 bg-gray-50">
+                <button
+                  onClick={() => setShowProjectDialog(false)}
+                  className="flex-1 px-4 py-2.5 border-2 border-gray-300 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  Cancel
+                </button>
+                <button className="flex-1 px-4 py-2.5 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium">
+                  Create Project
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Dataset Dialog */}
+        {showDatasetDialog && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b-2 border-gray-200 flex items-center justify-between sticky top-0 bg-white">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Upload Dataset
+                </h2>
+                <button
+                  onClick={() => setShowDatasetDialog(false)}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <label htmlFor='dataset-name' className="block text-sm font-medium text-gray-900 mb-2">
+                    Dataset Name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="Enter dataset name"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor='dataset-type' className="block text-sm font-medium text-gray-900 mb-2">
+                      Type
+                    </label>
+                    <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+                      <option>Vector</option>
+                      <option>Raster</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor='dataset-format' className="block text-sm font-medium text-gray-900 mb-2">
+                      Format
+                    </label>
+                    <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors">
+                      <option>Shapefile</option>
+                      <option>GeoTIFF</option>
+                      <option>GeoJSON</option>
+                      <option>KML</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor='dataset-file' className="block text-sm font-medium text-gray-900 mb-2">
+                    File Upload
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-black transition-colors cursor-pointer">
+                    <Upload size={32} className="mx-auto text-gray-400 mb-2" />
+                    <div className="text-sm text-gray-600">
+                      Drag & drop files here or click to browse
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      Supports: .shp, .tif, .geojson, .kml
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor='dataset-resolution' className="block text-sm font-medium text-gray-900 mb-2">
+                    Resolution
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="e.g., 30m, State Level"
+                  />
+                </div>
+                <div>
+                  <label htmlFor='dataset-source' className="block text-sm font-medium text-gray-900 mb-2">
+                    Source
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    placeholder="Data source"
+                  />
+                </div>
+                <div>
+                  <label htmlFor='dataset-description' className="block text-sm font-medium text-gray-900 mb-2">
+                    Description
+                  </label>
+                  <textarea
+                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-black transition-colors"
+                    rows="3"
+                    placeholder="Enter dataset description"
+                  ></textarea>
+                </div>
+              </div>
+              <div className="p-6 border-t-2 border-gray-200 flex gap-3 bg-gray-50">
+                <button
+                  onClick={() => setShowDatasetDialog(false)}
+                  className="flex-1 px-4 py-2.5 border-2 border-gray-300 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
+                >
+                  Cancel
+                </button>
+                <button className="flex-1 px-4 py-2.5 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium">
+                  Upload Dataset
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
@@ -1870,325 +2203,34 @@ const GISDashboard = () => {
           }
         }
         
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
         .animate-fadeIn {
-          animation: fadeIn 0.3s ease-in;
+          animation: fadeIn 0.2s ease-out;
         }
         
         .animate-slideUp {
-          animation: slideUp 0.4s ease-out forwards;
-          opacity: 0;
+          animation: slideUp 0.4s ease-out backwards;
+        }
+
+        .animate-scaleIn {
+          animation: scaleIn 0.2s ease-out;
         }
       `}</style>
-
-      {/* Header */}
-      <div className="bg-white border-b-2 border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Globe className="text-blue-600" size={28} />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  GIS Department
-                </h1>
-                <p className="text-sm text-gray-600">
-                  Geographic Information Systems & Spatial Analysis
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
-                <Bell size={20} className="text-gray-600" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Search size={20} className="text-gray-600" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Settings size={20} className="text-gray-600" />
-              </button>
-            </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center gap-2 mt-4 overflow-x-auto pb-2">
-            {views.map((view) => (
-              <button
-                key={view.id}
-                onClick={() => setActiveView(view.id)}
-                title={view.tooltip}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
-                  activeView === view.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <view.icon size={18} />
-                {view.label}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        {activeView === 'overview' && renderOverview()}
-        {activeView === 'projects' && renderProjects()}
-        {activeView === 'map-viewer' && renderMapViewer()}
-        {activeView === 'datasets' && renderDatasets()}
-        {activeView === 'analysis' && renderAnalysis()}
-        {activeView === 'equipment' && renderEquipment()}
-      </div>
-
-      {/* Project Dialog */}
-      {showProjectDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b-2 border-gray-200 flex items-center justify-between sticky top-0 bg-white">
-              <h2 className="text-xl font-bold text-gray-900">
-                Create New Project
-              </h2>
-              <button
-                onClick={() => setShowProjectDialog(false)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Project Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Enter project name"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Project Type
-                  </label>
-                  <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                    <option>Urban Development</option>
-                    <option>Environmental</option>
-                    <option>Transportation</option>
-                    <option>Agriculture</option>
-                    <option>Infrastructure</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Priority
-                  </label>
-                  <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                    <option>High</option>
-                    <option>Medium</option>
-                    <option>Low</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Description
-                </label>
-                <textarea
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  rows="4"
-                  placeholder="Enter project description"
-                ></textarea>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Start Date
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    End Date
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Coverage Area (km²)
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="0.00"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Project Lead
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="Enter lead name"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Coordinates (Lat, Long)
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="e.g., 6.5244° N, 3.3792° E"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Stakeholders
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Comma-separated stakeholders"
-                />
-              </div>
-            </div>
-            <div className="p-6 border-t-2 border-gray-200 flex gap-3 bg-gray-50">
-              <button
-                onClick={() => setShowProjectDialog(false)}
-                className="flex-1 px-4 py-2.5 border-2 border-gray-300 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
-              >
-                Cancel
-              </button>
-              <button className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                Create Project
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Dataset Dialog */}
-      {showDatasetDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b-2 border-gray-200 flex items-center justify-between sticky top-0 bg-white">
-              <h2 className="text-xl font-bold text-gray-900">
-                Upload Dataset
-              </h2>
-              <button
-                onClick={() => setShowDatasetDialog(false)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Dataset Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Enter dataset name"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Type
-                  </label>
-                  <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                    <option>Vector</option>
-                    <option>Raster</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 mb-2">
-                    Format
-                  </label>
-                  <select className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                    <option>Shapefile</option>
-                    <option>GeoTIFF</option>
-                    <option>GeoJSON</option>
-                    <option>KML</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  File Upload
-                </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer">
-                  <Upload size={32} className="mx-auto text-gray-400 mb-2" />
-                  <div className="text-sm text-gray-600">
-                    Drag & drop files here or click to browse
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    Supports: .shp, .tif, .geojson, .kml
-                  </div>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Resolution
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="e.g., 30m, State Level"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Source
-                </label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="Data source"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Description
-                </label>
-                <textarea
-                  className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                  rows="3"
-                  placeholder="Enter dataset description"
-                ></textarea>
-              </div>
-            </div>
-            <div className="p-6 border-t-2 border-gray-200 flex gap-3 bg-gray-50">
-              <button
-                onClick={() => setShowDatasetDialog(false)}
-                className="flex-1 px-4 py-2.5 border-2 border-gray-300 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
-              >
-                Cancel
-              </button>
-              <button className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                Upload Dataset
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
-};
+}
+
+
 
 export default GISDashboard;
