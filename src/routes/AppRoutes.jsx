@@ -10,8 +10,27 @@ import OverviewPage from '../pages/Home/OverviewPage';
 
 // Department pages
 // import GISPage from '../pages/departments/GISPage';
+import GISDashboard from '../pages/department/GIS/GISOverview';
+import GISAnalysis from '../pages/department/GIS/Analysis';
+import GISDataSet from '../pages/department/GIS/DataSet';
+import GISProjects from '../pages/department/GIS/GISProjects';
+import GISMapViewer from '../pages/department/GIS/MapViewer';
+import GISEquipment from '../pages/department/GIS/Equipment';
+
+
+// RnD pages
+import RnDDashboard from '../pages/department/RnD/RnDOverview';
+import RnDExperiments from '../pages/department/RnD/RnDExperiments';
+import RnDEquipments from '../pages/department/RnD/RnDEquipments';
+import RnDPrototypes from '../pages/department/RnD/RnDPrototypes';
+import RnDResearch from '../pages/department/RnD/RnDResearch';
+// import RnDProjects from '../pages/department/RnD/RProjects';
+// import RnDInventory from '../pages/department/RnD/Inventory';
+// import RnDReports from '../pages/department/RnD/Reports';
+// import RnDTeams from '../pages/department/RnD/Teams';
+
+// import RnDPage from '../pages/departments/RnDPage';
 // import SurveyPage from '../pages/departments/SurveyPage';
-import RnDDashboard from '../pages/department/RnD';
 // import BusinessDevPage from '../pages/departments/BusinessDevPage';
 // import ITPage from '../pages/departments/ITPage';
 // import HRDepartmentPage from '../pages/departments/HRDepartmentPage';
@@ -65,9 +84,10 @@ import StaffManagement from '../pages/hr/StaffManagement';
 // import AddEmployeePage from '../pages/hr/AddEmployeePage';
 
 // Communication pages
-// import ChatPage from '../pages/communication/ChatPage';
+import ChatPage from '../pages/communictaion/Communication';
+import Meeting from '../pages/communictaion/meeting';
+// import MeetingsPage from '../pages/communication/meeting';
 // import AnnouncementsPage from '../pages/communication/AnnouncementsPage';
-// import MeetingsPage from '../pages/communication/MeetingsPage';
 // import SharedFilesPage from '../pages/communication/SharedFilesPage';
 // import EmailPage from '../pages/communication/EmailPage';
 
@@ -94,7 +114,6 @@ import TeamPage from '../pages/admin/TeamPage';
 
 // Settings pages
 import SettingsPage from '../pages/settings/SettingsPage';
-import GISDashboard from '../pages/department/GIS';
 // import ThemeSettingsPage from '../pages/settings/ThemeSettingsPage';
 // import LanguagePage from '../pages/settings/LanguagePage';
 // import NotificationSettingsPage from '../pages/settings/NotificationSettingsPage';
@@ -118,7 +137,24 @@ const AppRoutes = () => {
       <Route path='/notifications' element={<NotificationsPage />} /> */}
       {/* Departments */}
       <Route path="/GISDashboard" element={<GISDashboard />} />
+      <Route path="/GISAnalysis" element={<GISAnalysis />} />
+      <Route path="/GISDataSet" element={<GISDataSet />} />
+      <Route path="/GISProjects" element={<GISProjects />} />
+      <Route path="/GISMapViewer" element={<GISMapViewer />} />
+      <Route path="/GISEquipment" element={<GISEquipment />} />
+
+      {/* RnD Department */}
       <Route path="/RnDDashboard" element={<RnDDashboard />} />
+
+      <Route path="/RnDExperiments" element={<RnDExperiments />} />
+      <Route path="/RnDEquipments" element={<RnDEquipments />} />
+      <Route path="/RnDPrototypes" element={<RnDPrototypes />} />
+      <Route path="/RnDResearch" element={<RnDResearch />} />
+      {/* <Route path="/RnDProjects" element={<RnDProjects />} /> */}
+
+
+
+
       {/* 
       <Route path='/departments/survey' element={<SurveyPage />} />
       <Route path='/departments/business' element={<BusinessDevPage />} />
@@ -177,10 +213,12 @@ const AppRoutes = () => {
       <Route path='/hr/performance' element={<PerformancePage />} />
       <Route path='/hr/payroll' element={<HRPayrollPage />} />
       <Route path='/hr/add' element={<AddEmployeePage />} /> */}
+
       {/* Communication */}
-      {/* <Route path='/communication/chat' element={<ChatPage />} />
+      <Route path='/communication/communication' element={<ChatPage />} />
+      <Route path='/communication/meeting' element={<Meeting />} />
+      {/* 
       <Route path='/communication/announcements' element={<AnnouncementsPage />} />
-      <Route path='/communication/meetings' element={<MeetingsPage />} />
       <Route path='/communication/files' element={<SharedFilesPage />} />
       <Route path='/communication/email' element={<EmailPage />} /> */}
       {/* Reports */}

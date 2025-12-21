@@ -70,6 +70,9 @@ import {
   BellRing,
   Trash2,
   LogOut,
+  FlaskConical,
+  Map,
+  Database,
   // Route,
 } from 'lucide-react';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -79,8 +82,12 @@ const Sidebar = () => {
   const location = useLocation();
 
   // Add navigation handler
-  const handleNavigation = (route) => {
-    navigate(route);
+  const handleNavigation = (route, action) => {
+    if (action) {
+      navigate(`${route}?view=${action}`);
+    } else {
+      navigate(route);
+    }
   };
 
   const { theme } = useContext(ThemeContext);
@@ -90,6 +97,12 @@ const Sidebar = () => {
   const [expandedSections, setExpandedSections] = useState({
     home: true,
     departments: true,
+    'gis-dept': false,
+    'rnd-dept': false,
+    'survey-dept': false,
+    'business-dept': false,
+    'it-dept': false,
+    'procurement-dept': false,
     projects: true,
     drone: true,
     accounting: true,
@@ -150,57 +163,153 @@ const Sidebar = () => {
       title: 'Departments',
       sections: [
         {
-          id: 'departments',
-          label: 'DEPARTMENT DASHBOARDS',
+          id: 'gis-dept',
+          label: 'GIS Department',
+          icon: Globe,
+          color: 'text-green-600',
+          hasDropdown: true,
           items: [
             {
-              icon: Globe,
-              label: 'GIS Department',
+              icon: Map,
+              label: 'Department Overview',
               color: 'text-green-600',
               route: '/GISDashboard',
             },
-
+            {
+              icon: Briefcase,
+              label: 'Projects',
+              color: 'text-green-600',
+              route: '/GISProjects',
+              action: 'projects',
+            },
+            {
+              icon: Globe,
+              label: 'Map Viewer',
+              color: 'text-green-600',
+              route: '/GISMapViewer',
+              action: 'map-viewer',
+            },
+            {
+              icon: Database,
+              label: 'Datasets',
+              color: 'text-green-600',
+              route: '/GISDataSet',
+              action: 'datasets',
+            },
+            {
+              icon: BarChart3,
+              label: 'Analysis',
+              color: 'text-green-600',
+              route: '/GISAnalysis',
+              action: 'analysis',
+            },
+            {
+              icon: Box,
+              label: 'Equipment',
+              color: 'text-green-600',
+              route: '/GISEquipment',
+              action: 'equipment',
+            },
+          ],
+        },
+        {
+          id: 'rnd-dept',
+          label: 'R&D UAS Department',
+          icon: Cog,
+          color: 'text-purple-600',
+          hasDropdown: true,
+          items: [
             {
               icon: Cog,
-              label: 'R&D UAS Department',
+              label: 'Department Overview',
               color: 'text-purple-600',
               route: '/RnDDashboard',
             },
-
+            {
+              icon: FlaskConical,
+              label: 'Experiments',
+              color: 'text-purple-600',
+              route: '/RnDExperiments',
+              action: 'experiments',
+            },
+            {
+              icon: Plane,
+              label: 'Prototypes',
+              color: 'text-purple-600',
+              route: '/RnDPrototypes',
+              action: 'prototypes',
+            },
+            {
+              icon: BookOpen,
+              label: 'Research',
+              color: 'text-purple-600',
+              route: '/RnDResearch',
+              action: 'research',
+            },
+            {
+              icon: Database,
+              label: 'Equipment',
+              color: 'text-purple-600',
+              route: '/RnDEquipments',
+              action: 'equipment',
+            },
+          ],
+        },
+        {
+          id: 'survey-dept',
+          label: 'Survey Department',
+          icon: Ruler,
+          color: 'text-blue-500',
+          hasDropdown: false,
+          items: [
             {
               icon: Ruler,
-              label: 'Survey Department',
+              label: 'Survey Dashboard',
               color: 'text-blue-500',
               route: '/survey',
             },
-
+          ],
+        },
+        {
+          id: 'business-dept',
+          label: 'Business Development',
+          icon: Briefcase,
+          color: 'text-indigo-600',
+          hasDropdown: false,
+          items: [
             {
               icon: Briefcase,
-              label: 'Business Development',
+              label: 'Business Dashboard',
               color: 'text-indigo-600',
-              route: 'business',
+              route: '/business',
             },
+          ],
+        },
+        {
+          id: 'it-dept',
+          label: 'IT & Systems',
+          icon: Cpu,
+          color: 'text-cyan-600',
+          hasDropdown: false,
+          items: [
             {
               icon: Cpu,
-              label: 'IT & Systems',
+              label: 'Systems Dashboard',
               color: 'text-cyan-600',
               route: '/system',
             },
-            {
-              icon: UserCircle,
-              label: 'HR Department',
-              color: 'text-pink-600',
-              route: '/hr',
-            },
-            {
-              icon: FileText,
-              label: 'Accounting Department',
-              color: 'text-emerald-600',
-              route: '/accounting',
-            },
+          ],
+        },
+        {
+          id: 'procurement-dept',
+          label: 'Procurement & Logistics',
+          icon: ShoppingCart,
+          color: 'text-amber-600',
+          hasDropdown: false,
+          items: [
             {
               icon: ShoppingCart,
-              label: 'Procurement & Logistics',
+              label: 'Procurement Dashboard',
               color: 'text-amber-600',
               route: '/procurement',
             },
@@ -472,15 +581,15 @@ const Sidebar = () => {
               label: 'Chat',
               color: 'text-blue-600',
               badge: '9',
-              route: '/communication/chat',
+              route: '/communication/communication',
             },
             // { icon: Bell, label: 'Announcements', color: 'text-red-600' },
-            // {
-            //   icon: Calendar,
-            //   label: 'Meeting Scheduler',
-            //   color: 'text-purple-600',
-            //   route: '/communication/meeting',
-            // },
+            {
+              icon: Calendar,
+              label: 'Meeting Scheduler',
+              color: 'text-purple-600',
+              route: '/communication/meeting',
+            },
             // {
             //   icon: Folder,
             //   label: 'Shared Files',
@@ -784,56 +893,127 @@ const Sidebar = () => {
                   >
                     {currentMenu.sections.map((section) => (
                       <div key={section.id} className="mb-6">
-                        <button
-                          onClick={() => toggleSection(section.id)}
-                          className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
-                        >
-                          {expandedSections[section.id] ? (
-                            <ChevronDown size={14} className="mr-1" />
-                          ) : (
-                            <ChevronRight size={14} className="mr-1" />
-                          )}
-                          {section.label}
-                        </button>
-
-                        <AnimatePresence>
-                          {expandedSections[section.id] && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="space-y-1 ml-2"
+                        {/* For department sections with dropdown */}
+                        {section.hasDropdown ? (
+                          <div>
+                            <button
+                              onClick={() => toggleSection(section.id)}
+                              className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer transition-all duration-200 w-full ${expandedSections[section.id]
+                                ? 'bg-gray-100 text-gray-900'
+                                : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                }`}
                             >
-                              {section.items.map((item, index) => (
-                                <div key={index}>
-                                  <div
-
-                                    onClick={() => handleNavigation(item.route)}
-                                    className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer transition-all duration-200 ${location.pathname === item.route
-                                      ? 'bg-teal-50 text-teal-600'
-                                      : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                              <div className="flex items-center flex-1">
+                                {expandedSections[section.id] ? (
+                                  <ChevronDown size={14} className="mr-2" />
+                                ) : (
+                                  <ChevronRight size={14} className="mr-2" />
+                                )}
+                                {section.icon && (
+                                  <section.icon
+                                    size={14}
+                                    className={`mr-2 ${section.color || 'text-gray-400'
                                       }`}
-                                  >
-                                    <div className="flex items-center flex-1">
-                                      <item.icon
-                                        size={14}
-                                        className={`mr-2 ${item.color || 'text-gray-400'
-                                          }`}
-                                      />
-                                      <span>{item.label}</span>
+                                  />
+                                )}
+                                <span className="font-semibold text-xs uppercase tracking-wider">
+                                  {section.label}
+                                </span>
+                              </div>
+                            </button>
+
+                            <AnimatePresence>
+                              {expandedSections[section.id] && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: 'auto' }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="space-y-1 ml-4 mt-2"
+                                >
+                                  {section.items.map((item, index) => (
+                                    <div
+                                      key={index}
+                                      onClick={() => handleNavigation(item.route, item.action)}
+                                      className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer transition-all duration-200 ${location.pathname === item.route
+                                        ? 'bg-teal-50 text-teal-600'
+                                        : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                        }`}
+                                    >
+                                      <div className="flex items-center flex-1">
+                                        <item.icon
+                                          size={14}
+                                          className={`mr-2 ${item.color || 'text-gray-400'
+                                            }`}
+                                        />
+                                        <span>{item.label}</span>
+                                      </div>
+                                      {item.badge && (
+                                        <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
+                                          {item.badge}
+                                        </span>
+                                      )}
                                     </div>
-                                    {item.badge && (
-                                      <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
-                                        {item.badge}
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : (
+                          /* For regular sections without dropdown */
+                          <div>
+                            <button
+                              onClick={() => toggleSection(section.id)}
+                              className="flex items-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 w-full hover:text-gray-700"
+                            >
+                              {expandedSections[section.id] ? (
+                                <ChevronDown size={14} className="mr-1" />
+                              ) : (
+                                <ChevronRight size={14} className="mr-1" />
+                              )}
+                              {section.label}
+                            </button>
+
+                            <AnimatePresence>
+                              {expandedSections[section.id] && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: 'auto' }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="space-y-1 ml-2"
+                                >
+                                  {section.items.map((item, index) => (
+                                    <div key={index}>
+                                      <div
+
+                                        onClick={() => handleNavigation(item.route)}
+                                        className={`flex items-center justify-between py-2 px-2 text-sm rounded-md cursor-pointer transition-all duration-200 ${location.pathname === item.route
+                                          ? 'bg-teal-50 text-teal-600'
+                                          : 'text-gray-700 hover:bg-black hover:text-gray-100'
+                                          }`}
+                                      >
+                                        <div className="flex items-center flex-1">
+                                          <item.icon
+                                            size={14}
+                                            className={`mr-2 ${item.color || 'text-gray-400'
+                                              }`}
+                                          />
+                                          <span>{item.label}</span>
+                                        </div>
+                                        {item.badge && (
+                                          <span className="ml-2 px-2 py-0.5 text-xs bg-gray-200 text-gray-700 rounded-full">
+                                            {item.badge}
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </motion.div>
