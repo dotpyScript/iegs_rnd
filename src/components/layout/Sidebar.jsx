@@ -233,6 +233,13 @@ const Sidebar = () => {
               action: 'experiments',
             },
             {
+              icon: Briefcase,
+              label: 'Projects',
+              color: 'text-purple-600',
+              route: '/RnDProjects',
+              action: 'projects',
+            },
+            {
               icon: Plane,
               label: 'Prototypes',
               color: 'text-purple-600',

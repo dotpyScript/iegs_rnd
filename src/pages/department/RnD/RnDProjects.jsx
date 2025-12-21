@@ -12,12 +12,13 @@ import {
     MoreVertical,
     Edit,
     Eye,
-    Clock,
     Users,
+    Calendar,
+    TrendingUp,
 } from 'lucide-react';
 
-const RnDPrototypes = () => {
-    const [activeView, setActiveView] = useState('prototypes');
+const RnDProjects = () => {
+    const [activeView, setActiveView] = useState('overview');
 
     const views = [
         {
@@ -52,42 +53,54 @@ const RnDPrototypes = () => {
         },
     ];
 
-    const prototypes = [
+    const projects = [
         {
             id: 1,
-            name: 'Advanced Quadcopter v2.0',
-            type: 'Hardware',
-            status: 'in-testing',
-            progress: 82,
-            lead: 'Eng. James Adeyemi',
-            team: ['JA', 'RC', 'TS'],
-            startDate: '2024-03-01',
-            endDate: '2024-08-30',
-            specifications: 'Endurance: 45min, Max Altitude: 5000m',
+            name: 'Next-Gen UAV Platform',
+            status: 'in-progress',
+            progress: 68,
+            lead: 'Dr. Sarah Chen',
+            team: ['SC', 'JD', 'MK', 'RC'],
+            startDate: '2024-06-01',
+            deadline: '2025-06-30',
+            budget: '₦50M',
+            priority: 'high',
         },
         {
             id: 2,
-            name: 'AI Flight Controller',
-            type: 'Software',
-            status: 'development',
-            progress: 60,
+            name: 'AI-Powered Flight Control System',
+            status: 'in-progress',
+            progress: 52,
             lead: 'Dr. Chioma Okonkwo',
-            team: ['CO', 'AO', 'KM'],
-            startDate: '2024-04-15',
-            endDate: '2024-09-15',
-            specifications: 'Real-time decision making, Multi-sensor fusion',
+            team: ['CO', 'AO', 'KM', 'TS'],
+            startDate: '2024-07-15',
+            deadline: '2025-07-15',
+            budget: '₦35M',
+            priority: 'high',
         },
         {
             id: 3,
-            name: 'Thermal Imaging Payload',
-            type: 'Hardware',
+            name: 'Advanced Sensor Integration',
+            status: 'planning',
+            progress: 15,
+            lead: 'Eng. Michael Okafor',
+            team: ['MO', 'TK'],
+            startDate: '2025-01-01',
+            deadline: '2025-12-31',
+            budget: '₦25M',
+            priority: 'medium',
+        },
+        {
+            id: 4,
+            name: 'Thermal Imaging System Enhancement',
             status: 'completed',
             progress: 100,
             lead: 'Eng. Tunde Oladele',
-            team: ['TO', 'SM'],
-            startDate: '2024-01-10',
-            endDate: '2024-03-20',
-            specifications: '640x480 thermal sensor, Real-time streaming',
+            team: ['TO', 'SM', 'AJ'],
+            startDate: '2024-02-01',
+            deadline: '2024-10-31',
+            budget: '₦18M',
+            priority: 'medium',
         },
     ];
 
@@ -101,10 +114,10 @@ const RnDPrototypes = () => {
                             <div className="flex items-center justify-center gap-6">
                                 <div>
                                     <h1 className="text-xl font-bold text-gray-900">
-                                        UAV Prototypes
+                                        R&D Projects
                                     </h1>
                                     <p className="text-xs text-gray-500 mt-0.5">
-                                        Prototype Development & Testing
+                                        Research & Development Projects
                                     </p>
                                 </div>
                             </div>
@@ -137,12 +150,12 @@ const RnDPrototypes = () => {
                                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                                     <button
                                         className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
-                                        title="New Prototype"
+                                        title="New Project"
                                     >
                                         <Plus size={18} className="flex-shrink-0" />
                                         <span className="text-sm font-medium sm:hidden">Add</span>
                                         <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                                            New Prototype
+                                            New Project
                                         </div>
                                     </button>
 
@@ -183,23 +196,23 @@ const RnDPrototypes = () => {
                                     <Search size={18} className="absolute left-3 top-3 text-gray-400" />
                                     <input
                                         type="text"
-                                        placeholder="Search prototypes..."
+                                        placeholder="Search projects..."
                                         className="w-full pl-10 pr-4 py-2 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none"
                                     />
                                 </div>
                             </div>
 
-                            {/* Prototypes Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {prototypes.map((proto) => (
+                            {/* Projects Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {projects.map((project) => (
                                     <div
-                                        key={proto.id}
+                                        key={project.id}
                                         className="border-2 border-gray-200 rounded-lg p-4 hover:border-black transition-all duration-200"
                                     >
                                         <div className="flex items-start justify-between mb-3">
                                             <div className="flex-1">
-                                                <h3 className="font-semibold text-gray-900">{proto.name}</h3>
-                                                <p className="text-xs text-gray-500">{proto.type}</p>
+                                                <h3 className="font-semibold text-gray-900">{project.name}</h3>
+                                                <p className="text-xs text-gray-500">{project.lead}</p>
                                             </div>
                                             <button className="p-1 hover:bg-gray-100 rounded">
                                                 <MoreVertical size={16} className="text-gray-400" />
@@ -209,26 +222,33 @@ const RnDPrototypes = () => {
                                         <div className="space-y-2 mb-3">
                                             <div className="flex items-center justify-between">
                                                 <span className="text-xs text-gray-600">Progress</span>
-                                                <span className={`text-xs font-semibold ${proto.status === 'completed' ? 'text-green-600' : 'text-blue-600'
+                                                <span className={`text-xs font-semibold ${project.status === 'completed' ? 'text-green-600' : 'text-blue-600'
                                                     }`}>
-                                                    {proto.progress}%
+                                                    {project.progress}%
                                                 </span>
                                             </div>
                                             <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                                                 <div
-                                                    className={`h-full ${proto.status === 'completed' ? 'bg-green-500' : 'bg-blue-500'
+                                                    className={`h-full ${project.status === 'completed' ? 'bg-green-500' : 'bg-blue-500'
                                                         }`}
-                                                    style={{ width: `${proto.progress}%` }}
+                                                    style={{ width: `${project.progress}%` }}
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="text-xs text-gray-600 space-y-1 mb-3 pb-3 border-b-2 border-gray-100">
                                             <div className="flex items-center gap-2">
-                                                <Users size={14} />
-                                                <span>{proto.lead}</span>
+                                                <Calendar size={14} />
+                                                <span>{project.startDate} - {project.deadline}</span>
                                             </div>
-                                            <div className="text-xs line-clamp-2">{proto.specifications}</div>
+                                            <div className="flex items-center gap-2">
+                                                <Users size={14} />
+                                                <span>{project.team.length} team members</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <TrendingUp size={14} />
+                                                <span>Budget: {project.budget}</span>
+                                            </div>
                                         </div>
 
                                         <div className="flex items-center gap-2 pt-3">
@@ -250,4 +270,4 @@ const RnDPrototypes = () => {
     );
 };
 
-export default RnDPrototypes;
+export default RnDProjects;

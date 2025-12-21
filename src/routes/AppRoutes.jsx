@@ -23,8 +23,8 @@ import RnDDashboard from '../pages/department/RnD/RnDOverview';
 import RnDExperiments from '../pages/department/RnD/RnDExperiments';
 import RnDEquipments from '../pages/department/RnD/RnDEquipments';
 import RnDPrototypes from '../pages/department/RnD/RnDPrototypes';
+import RnDProjects from '../pages/department/RnD/RnDProjects';
 import RnDResearch from '../pages/department/RnD/RnDResearch';
-// import RnDProjects from '../pages/department/RnD/RProjects';
 // import RnDInventory from '../pages/department/RnD/Inventory';
 // import RnDReports from '../pages/department/RnD/Reports';
 // import RnDTeams from '../pages/department/RnD/Teams';
@@ -150,7 +150,7 @@ const AppRoutes = () => {
       <Route path="/RnDEquipments" element={<RnDEquipments />} />
       <Route path="/RnDPrototypes" element={<RnDPrototypes />} />
       <Route path="/RnDResearch" element={<RnDResearch />} />
-      {/* <Route path="/RnDProjects" element={<RnDProjects />} /> */}
+      <Route path="/RnDProjects" element={<RnDProjects />} />
 
 
 
