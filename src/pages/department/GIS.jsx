@@ -89,32 +89,32 @@ const GISDashboard = () => {
       label: 'Active Projects',
       value: '24',
       change: '+4',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
+      color: 'text-slate-700',
+      // bgColor: 'bg-blue-50',
     },
     {
       icon: Layers,
       label: 'Map Layers',
       value: '156',
       change: '+12',
-      color: 'text-green-600',
-      bgColor: 'bg-green-50',
+      color: 'text-slate-700',
+      // bgColor: 'bg-green-50',
     },
     {
       icon: Database,
       label: 'Datasets',
       value: '89',
       change: '+8',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
+      color: 'text-slate-700',
+      // bgColor: 'bg-purple-50',
     },
     {
       icon: Globe,
       label: 'Coverage Area',
       value: '2,450 km²',
       change: '+145',
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
+      color: 'text-slate-700',
+      // bgColor: 'bg-orange-50',
     },
   ];
 
@@ -502,36 +502,36 @@ const GISDashboard = () => {
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
       case 'completed':
-        return 'bg-green-600 text-white';
+        return 'bg-gray-900 text-white';
       case 'in-progress':
-        return 'bg-slate-600 text-white';
+        return 'bg-gray-800 text-white';
       case 'planning':
-        return 'bg-slate-500 text-white';
+        return 'bg-gray-700 text-white';
       case 'upcoming':
-        return 'bg-gray-300 text-gray-700';
+        return 'bg-gray-600 text-white';
       case 'active':
-        return 'bg-green-600 text-white';
+        return 'bg-gray-900 text-white';
       case 'processing':
-        return 'bg-slate-500 text-white';
+        return 'bg-gray-900 text-white';
       case 'maintenance':
         return 'bg-orange-500 text-white';
       case 'available':
-        return 'bg-green-600 text-white';
+        return 'bg-gray-600 text-white';
       case 'in use':
-        return 'bg-slate-600 text-white';
+        return 'bg-gray-600 text-white';
       default:
-        return 'bg-gray-400 text-white';
+        return 'bg-gray-200 text-white';
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
-        return 'bg-red-500';
+        return 'bg-gray-900';
       case 'medium':
-        return 'bg-yellow-500';
+        return 'bg-gray-700';
       case 'low':
-        return 'bg-green-500';
+        return 'bg-gray-500';
       default:
         return 'bg-gray-400';
     }
@@ -548,11 +548,11 @@ const GISDashboard = () => {
             style={{ animationDelay: `${idx * 50}ms` }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className={`p-3 rounded-lg ${stat.bgColor}`}>
+              <div>
                 <stat.icon className={stat.color} size={24} />
               </div>
               <span
-                className={`text-xs font-semibold px-2 py-1 rounded-full ${stat.color} ${stat.bgColor}`}
+                className={`text-xs font-semibold px-2 py-1 rounded-full ${stat.color}`}
               >
                 {stat.change}
               </span>
@@ -569,30 +569,30 @@ const GISDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-gradient-to-br from-blue-50 to-white">
           <div className="flex items-center gap-3 mb-3">
-            <Activity className="text-blue-600" size={24} />
+            <Activity className="text-gray-700" size={24} />
             <h3 className="text-lg font-bold text-gray-900">Active Mapping</h3>
           </div>
-          <div className="text-3xl font-bold text-blue-600 mb-1">12</div>
+          <div className="text-3xl font-bold text-gray-700 mb-1">12</div>
           <div className="text-sm text-gray-600">Field operations ongoing</div>
         </div>
 
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-gradient-to-br from-green-50 to-white">
           <div className="flex items-center gap-3 mb-3">
-            <CheckCircle2 className="text-green-600" size={24} />
+            <CheckCircle2 className="text-gray-700" size={24} />
             <h3 className="text-lg font-bold text-gray-900">
               Completed This Month
             </h3>
           </div>
-          <div className="text-3xl font-bold text-green-600 mb-1">8</div>
+          <div className="text-3xl font-bold text-gray-700 mb-1">8</div>
           <div className="text-sm text-gray-600">Projects delivered</div>
         </div>
 
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-gradient-to-br from-purple-50 to-white">
           <div className="flex items-center gap-3 mb-3">
-            <Target className="text-purple-600" size={24} />
+            <Target className="text-gray-700" size={24} />
             <h3 className="text-lg font-bold text-gray-900">Accuracy Rate</h3>
           </div>
-          <div className="text-3xl font-bold text-purple-600 mb-1">96%</div>
+          <div className="text-3xl font-bold text-gray-700 mb-1">96%</div>
           <div className="text-sm text-gray-600">Average data quality</div>
         </div>
       </div>
@@ -605,7 +605,7 @@ const GISDashboard = () => {
             <h3 className="text-lg font-bold text-gray-900">Recent Projects</h3>
             <button
               onClick={() => setActiveView('projects')}
-              className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+              className="text-sm text-gray-700 hover:text-gray-500 font-medium flex items-center gap-1"
             >
               View All <ChevronRight size={16} />
             </button>
@@ -641,7 +641,7 @@ const GISDashboard = () => {
                     {project.team.slice(0, 3).map((member, i) => (
                       <div
                         key={i}
-                        className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-semibold border-2 border-white"
+                        className="w-6 h-6 bg-gray-600 text-white rounded-full flex items-center justify-center text-xs font-semibold border-2 border-white"
                       >
                         {member}
                       </div>
@@ -650,7 +650,7 @@ const GISDashboard = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
                   <div
-                    className="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
+                    className="bg-gradient-to-r from-slate-100 to-slate-900 h-1.5 rounded-full transition-all duration-500"
                     style={{ width: `${project.progress}%` }}
                   />
                 </div>
@@ -713,37 +713,37 @@ const GISDashboard = () => {
               icon: Plus,
               label: 'New Project',
               action: () => setShowProjectDialog(true),
-              color: 'blue',
+              // color: 'blue',
             },
             {
               icon: Upload,
               label: 'Upload Data',
               action: () => setShowDatasetDialog(true),
-              color: 'green',
+              // color: 'green',
             },
             {
               icon: Map,
               label: 'Open Map',
               action: () => setActiveView('map-viewer'),
-              color: 'purple',
+              // color: 'purple',
             },
             {
               icon: BarChart3,
               label: 'Run Analysis',
               action: () => setActiveView('analysis'),
-              color: 'orange',
+              // color: 'orange',
             },
             {
               icon: Download,
               label: 'Export Data',
               action: () => { },
-              color: 'indigo',
+              // color: 'indigo',
             },
             {
               icon: Share2,
               label: 'Share Map',
               action: () => { },
-              color: 'pink',
+              // color: 'pink',
             },
           ].map((item, idx) => (
             <button
@@ -1020,9 +1020,9 @@ const GISDashboard = () => {
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {deliverable.status === 'completed' ? (
-                          <CheckCircle2 size={20} className="text-green-600" />
+                          <CheckCircle2 size={20} className="text-gray-900" />
                         ) : deliverable.status === 'in-progress' ? (
-                          <Activity size={20} className="text-blue-600" />
+                          <Activity size={20} className="text-gray-700" />
                         ) : (
                           <Clock size={20} className="text-gray-400" />
                         )}
@@ -1289,15 +1289,15 @@ const GISDashboard = () => {
           <input
             type="text"
             placeholder="Search datasets..."
-            className="w-full pl-10 pr-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900 transition-colors"
           />
         </div>
-        <select className="px-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500">
+        <select className="px-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900">
           <option>All Types</option>
           <option>Vector</option>
           <option>Raster</option>
         </select>
-        <select className="px-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500">
+        <select className="px-4 py-2.5 text-sm border-2 border-gray-200 rounded-lg focus:outline-none focus:border-gray-900">
           <option>All Formats</option>
           <option>Shapefile</option>
           <option>GeoTIFF</option>
@@ -1305,7 +1305,7 @@ const GISDashboard = () => {
         </select>
         <button
           onClick={() => setShowDatasetDialog(true)}
-          className="flex items-center gap-2 px-4 py-2.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium"
+          className="flex items-center gap-2 px-4 py-2.5 text-sm bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all font-medium"
         >
           <Upload size={18} />
           Upload Dataset
@@ -1317,18 +1317,18 @@ const GISDashboard = () => {
         {datasets.map((dataset, idx) => (
           <div
             key={dataset.id}
-            className="border-2 border-gray-200 rounded-lg p-5 bg-white hover:border-blue-500 hover:shadow-lg transition-all duration-300 animate-slideUp"
+            className="border-2 border-gray-200 rounded-lg p-5 bg-white hover:border-gray-500 hover:shadow-lg transition-all duration-300 animate-slideUp"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-2">
                 {dataset.type === 'Vector' ? (
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <Grid3x3 size={20} className="text-green-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <Grid3x3 size={20} className="text-gray-700" />
                   </div>
                 ) : (
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <Image size={20} className="text-purple-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg">
+                    <Image size={20} className="text-gray-700" />
                   </div>
                 )}
                 <div>
@@ -1391,10 +1391,10 @@ const GISDashboard = () => {
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
                   className={`h-2 rounded-full ${dataset.quality >= 90
-                    ? 'bg-green-600'
+                    ? 'bg-gradient-to-r from-gray-100 to-gray-900'
                     : dataset.quality >= 80
-                      ? 'bg-blue-600'
-                      : 'bg-yellow-600'
+                      ? 'bg-gradient-to-r from-gray-100 to-gray-900'
+                      : 'bg-gradient-to-r from-gray-100 to-gray-900'
                     }`}
                   style={{ width: `${dataset.quality}%` }}
                 />
@@ -1412,15 +1412,15 @@ const GISDashboard = () => {
             </div>
 
             <div className="flex gap-2">
-              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Eye size={12} />
                 View
               </button>
-              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Download size={12} />
                 Download
               </button>
-              <button className="flex items-center justify-center px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex items-center justify-center px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Share2 size={12} />
               </button>
             </div>
@@ -1432,7 +1432,7 @@ const GISDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-white">
           <div className="flex items-center gap-3 mb-3">
-            <Database className="text-blue-600" size={24} />
+            <Database className="text-gray-600" size={24} />
             <h3 className="text-sm font-bold text-gray-900">Total Datasets</h3>
           </div>
           <div className="text-3xl font-bold text-gray-900 mb-1">89</div>
@@ -1441,7 +1441,7 @@ const GISDashboard = () => {
 
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-white">
           <div className="flex items-center gap-3 mb-3">
-            <Activity className="text-green-600" size={24} />
+            <Activity className="text-gray-600" size={24} />
             <h3 className="text-sm font-bold text-gray-900">Active Datasets</h3>
           </div>
           <div className="text-3xl font-bold text-gray-900 mb-1">76</div>
@@ -1450,7 +1450,7 @@ const GISDashboard = () => {
 
         <div className="border-2 border-gray-200 rounded-lg p-5 bg-white">
           <div className="flex items-center gap-3 mb-3">
-            <Download className="text-purple-600" size={24} />
+            <Download className="text-gray-600" size={24} />
             <h3 className="text-sm font-bold text-gray-900">Total Downloads</h3>
           </div>
           <div className="text-3xl font-bold text-gray-900 mb-1">1,247</div>
@@ -1462,6 +1462,57 @@ const GISDashboard = () => {
 
   const renderAnalysis = () => (
     <div className="space-y-6 animate-fadeIn">
+
+      {/* Analysis Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {[
+          {
+            label: 'Total Analyses',
+            value: '145',
+            sublabel: 'All time',
+            icon: BarChart3,
+            color: 'gray',
+          },
+          {
+            label: 'This Month',
+            value: '12',
+            sublabel: '+3 from last month',
+            icon: TrendingUp,
+            color: 'gray',
+          },
+          {
+            label: 'Avg. Accuracy',
+            value: '92%',
+            sublabel: 'Quality metric',
+            icon: Target,
+            color: 'gray',
+          },
+          {
+            label: 'Processing Time',
+            value: '2.4h',
+            sublabel: 'Average duration',
+            icon: Clock,
+            color: 'gray',
+          },
+        ].map((stat, idx) => (
+          <div
+            key={idx}
+            className="border-2 border-gray-200 rounded-lg p-5 bg-white transition-all"
+          >
+            <div className={`p-2 bg-${stat.color}-100 rounded-lg w-fit mb-3`}>
+              <stat.icon className={`text-${stat.color}-600`} size={20} />
+            </div>
+            <div className="text-2xl font-bold text-gray-900 mb-1">
+              {stat.value}
+            </div>
+            <div className="text-sm font-medium text-gray-900 mb-1">
+              {stat.label}
+            </div>
+            <div className="text-xs text-gray-500">{stat.sublabel}</div>
+          </div>
+        ))}
+      </div>
+
       {/* Analysis Tools */}
       <div className="border-2 border-gray-200 rounded-lg p-5 bg-white">
         <h3 className="text-lg font-bold text-gray-900 mb-4">Analysis Tools</h3>
@@ -1498,11 +1549,11 @@ const GISDashboard = () => {
           ].map((tool, idx) => (
             <button
               key={idx}
-              className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+              className="p-4 border-2 border-gray-200 rounded-lg hover:border-gray-900 hover:bg-gray-50 transition-all text-left group"
             >
               <tool.icon
                 size={24}
-                className="text-gray-600 group-hover:text-blue-600 mb-2"
+                className="text-gray-600 group-hover:text-gray-900 mb-2"
               />
               <div className="text-sm font-semibold text-gray-900 mb-1">
                 {tool.label}
@@ -1576,21 +1627,21 @@ const GISDashboard = () => {
                   </div>
                   <div className="w-24 bg-gray-200 rounded-full h-1.5">
                     <div
-                      className="bg-green-600 h-1.5 rounded-full"
+                      className="bg-gray-600 h-1.5 rounded-full"
                       style={{ width: `${analysis.accuracy}%` }}
                     />
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                     <Eye size={12} />
                     View
                   </button>
-                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                     <Download size={12} />
                     Export
                   </button>
-                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                  <button className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                     <Share2 size={12} />
                     Share
                   </button>
@@ -1599,56 +1650,6 @@ const GISDashboard = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Analysis Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {[
-          {
-            label: 'Total Analyses',
-            value: '145',
-            sublabel: 'All time',
-            icon: BarChart3,
-            color: 'blue',
-          },
-          {
-            label: 'This Month',
-            value: '12',
-            sublabel: '+3 from last month',
-            icon: TrendingUp,
-            color: 'green',
-          },
-          {
-            label: 'Avg. Accuracy',
-            value: '92%',
-            sublabel: 'Quality metric',
-            icon: Target,
-            color: 'purple',
-          },
-          {
-            label: 'Processing Time',
-            value: '2.4h',
-            sublabel: 'Average duration',
-            icon: Clock,
-            color: 'orange',
-          },
-        ].map((stat, idx) => (
-          <div
-            key={idx}
-            className="border-2 border-gray-200 rounded-lg p-5 bg-white hover:shadow-lg transition-all"
-          >
-            <div className={`p-2 bg-${stat.color}-100 rounded-lg w-fit mb-3`}>
-              <stat.icon className={`text-${stat.color}-600`} size={20} />
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-1">
-              {stat.value}
-            </div>
-            <div className="text-sm font-medium text-gray-900 mb-1">
-              {stat.label}
-            </div>
-            <div className="text-xs text-gray-500">{stat.sublabel}</div>
-          </div>
-        ))}
       </div>
     </div>
   );
@@ -1660,27 +1661,27 @@ const GISDashboard = () => {
         {equipment.map((equip, idx) => (
           <div
             key={idx}
-            className="border-2 border-gray-200 rounded-lg p-5 bg-white hover:border-blue-500 hover:shadow-lg transition-all duration-300 animate-slideUp"
+            className="border-2 border-gray-200 rounded-lg p-5 bg-white hover:border-gray-500 hover:shadow-lg transition-all duration-300 animate-slideUp"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div
                   className={`p-2 rounded-lg ${equip.status === 'Available'
-                    ? 'bg-green-100'
+                    ? 'bg-gray-100'
                     : equip.status === 'In Use'
-                      ? 'bg-blue-100'
-                      : 'bg-orange-100'
+                      ? 'bg-gray-100'
+                      : 'bg-gray-100'
                     }`}
                 >
                   <Radio
                     size={20}
                     className={
                       equip.status === 'Available'
-                        ? 'text-green-600'
+                        ? 'text-gray-600'
                         : equip.status === 'In Use'
-                          ? 'text-blue-600'
-                          : 'text-orange-600'
+                          ? 'text-gray-600'
+                          : 'text-gray-600'
                     }
                   />
                 </div>
@@ -1728,15 +1729,15 @@ const GISDashboard = () => {
             </div>
 
             <div className="flex gap-2">
-              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Calendar size={12} />
                 Book
               </button>
-              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Eye size={12} />
                 Details
               </button>
-              <button className="flex items-center justify-center px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+              <button className="flex items-center justify-center px-3 py-2 text-xs font-medium border-2 border-gray-200 rounded-lg hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all">
                 <Settings size={12} />
               </button>
             </div>
@@ -1752,28 +1753,28 @@ const GISDashboard = () => {
             value: '18',
             sublabel: '6 categories',
             icon: Box,
-            color: 'blue',
+            color: 'gray',
           },
           {
             label: 'Available',
             value: '12',
             sublabel: '67% ready',
             icon: CheckCircle2,
-            color: 'green',
+            color: 'gray',
           },
           {
             label: 'In Use',
             value: '4',
             sublabel: 'Currently deployed',
             icon: Activity,
-            color: 'orange',
+            color: 'gray',
           },
           {
             label: 'Maintenance',
             value: '2',
             sublabel: 'Being serviced',
             icon: Settings,
-            color: 'red',
+            color: 'gray',
           },
         ].map((stat, idx) => (
           <div
@@ -1834,8 +1835,8 @@ const GISDashboard = () => {
               </div>
               <span
                 className={`px-2.5 py-1 text-xs font-medium rounded-full ${item.status === 'urgent'
-                  ? 'bg-red-100 text-red-700'
-                  : 'bg-blue-100 text-blue-700'
+                  ? 'bg-red-100 text-gray-900'
+                  : 'bg-blue-100 text-gray-500'
                   }`}
               >
                 {item.status.toUpperCase()}
@@ -1868,7 +1869,7 @@ const GISDashboard = () => {
               {/* View Switcher and Action Buttons Container */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
                 {/* View Switcher */}
-                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg overflow-x-auto">
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
                   {views.map((view) => (
                     <div key={view.id} className="relative group">
                       <button
@@ -1929,7 +1930,7 @@ const GISDashboard = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto mt-8">
+        <div className="flex-1 mt-8">
           <div className="max-w-7xl mx-auto px-6 py-6">
             {activeView === 'overview' && renderOverview()}
             {activeView === 'projects' && renderProjects()}

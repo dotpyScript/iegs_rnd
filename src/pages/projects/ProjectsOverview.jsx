@@ -432,9 +432,8 @@ const ProjectsOverview = () => {
               {months.map((month, idx) => (
                 <div
                   key={month}
-                  className={`flex-1 text-center text-xs font-semibold ${
-                    idx === currentMonth ? 'text-gray-900' : 'text-gray-500'
-                  }`}
+                  className={`flex-1 text-center text-xs font-semibold ${idx === currentMonth ? 'text-gray-900' : 'text-gray-500'
+                    }`}
                 >
                   {month}
                 </div>
@@ -596,9 +595,8 @@ const ProjectsOverview = () => {
               return (
                 <div
                   key={day}
-                  className={`bg-white p-3 min-h-[100px] hover:bg-gray-50 transition-colors ${
-                    isToday ? 'ring-2 ring-black' : ''
-                  }`}
+                  className={`bg-white p-3 min-h-[100px] hover:bg-gray-50 transition-colors ${isToday ? 'ring-2 ring-black' : ''
+                    }`}
                 >
                   <div
                     className={`text-sm font-semibold mb-2 ${isToday ? 'text-black' : 'text-gray-900'}`}
@@ -874,56 +872,62 @@ const ProjectsOverview = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="h-screen flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b-2 border-gray-200 px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">
-                  Project Management
-                </h1>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  Track projects, milestones & team collaboration
-                </p>
+        <div className="px-6 py-4 bg-gray-50 border-gray-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="flex items-center justify-center gap-6">
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">
+                    Project Management
+                  </h1>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    Track projects, milestones & team collaboration
+                  </p>
+                </div>
               </div>
 
-              {/* View Switcher */}
-              <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
-                {views.map((view) => (
-                  <div key={view.id} className="relative group">
-                    <button
-                      onClick={() => setActiveView(view.id)}
-                      className={`p-2 rounded transition-all ${
-                        activeView === view.id
+              {/* View Switcher and Action Buttons Container */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+                {/* View Switcher */}
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
+                  {views.map((view) => (
+                    <div key={view.id} className="relative group">
+                      <button
+                        onClick={() => setActiveView(view.id)}
+                        className={`p-2 rounded transition-all whitespace-nowrap ${activeView === view.id
                           ? 'bg-white text-black'
                           : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      title={view.tooltip}
-                    >
-                      <view.icon size={18} />
-                    </button>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-                      {view.tooltip}
+                          }`}
+                        title={view.tooltip}
+                      >
+                        <view.icon size={18} />
+                      </button>
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        {view.tooltip}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                  ))}
+                </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setShowCreateDialog(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all"
-              >
-                <Plus size={18} />
-                <span className="text-sm font-medium">Create Project</span>
-              </button>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={() => setShowCreateDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-200 font-medium"
+                    title="Create Project"
+                  >
+                    <Plus size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium hidden lg:inline">Create Project</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 mt-8">
           <div className="max-w-7xl mx-auto px-6 py-6">
             {activeView === 'overview' && renderOverview()}
             {activeView === 'timeline' && renderTimeline()}

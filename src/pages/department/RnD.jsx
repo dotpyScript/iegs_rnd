@@ -421,8 +421,8 @@ const RnDDashboard = () => {
               label: 'Add Prototype',
               action: () => setShowPrototypeDialog(true),
             },
-            { icon: FileText, label: 'Lab Report', action: () => {} },
-            { icon: Upload, label: 'Upload Data', action: () => {} },
+            { icon: FileText, label: 'Lab Report', action: () => { } },
+            { icon: Upload, label: 'Upload Data', action: () => { } },
           ].map((item, idx) => (
             <button
               key={idx}
@@ -696,13 +696,12 @@ const RnDDashboard = () => {
               <div className="flex items-center justify-between mb-2">
                 <comp.icon size={20} className="text-gray-600" />
                 <span
-                  className={`w-2 h-2 rounded-full ${
-                    comp.status === 'Operational'
-                      ? 'bg-gray-900'
-                      : comp.status === 'Testing'
-                        ? 'bg-gray-600'
-                        : 'bg-gray-400'
-                  }`}
+                  className={`w-2 h-2 rounded-full ${comp.status === 'Operational'
+                    ? 'bg-gray-900'
+                    : comp.status === 'Testing'
+                      ? 'bg-gray-600'
+                      : 'bg-gray-400'
+                    }`}
                 />
               </div>
               <div className="text-sm font-medium text-gray-900 mb-1">
@@ -749,11 +748,10 @@ const RnDDashboard = () => {
                   </div>
                 </div>
                 <span
-                  className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                    paper.status === 'Published'
-                      ? 'bg-gray-900 text-white'
-                      : 'bg-gray-200 text-gray-700'
-                  }`}
+                  className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${paper.status === 'Published'
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-200 text-gray-700'
+                    }`}
                 >
                   {paper.status}
                 </span>
@@ -863,13 +861,12 @@ const RnDDashboard = () => {
                 </div>
               </div>
               <span
-                className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                  equip.status === 'Available'
-                    ? 'bg-gray-900 text-white'
-                    : equip.status === 'In Use'
-                      ? 'bg-gray-600 text-white'
-                      : 'bg-gray-300 text-gray-700'
-                }`}
+                className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${equip.status === 'Available'
+                  ? 'bg-gray-900 text-white'
+                  : equip.status === 'In Use'
+                    ? 'bg-gray-600 text-white'
+                    : 'bg-gray-300 text-gray-700'
+                  }`}
               >
                 {equip.status}
               </span>
@@ -930,86 +927,98 @@ const RnDDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-in;
-        }
-        
-        .animate-slideUp {
-          animation: slideUp 0.4s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+      <div className="h-screen flex flex-col">
+        {/* Header */}
+        <div className="px-6 py-4 bg-gray-50 border-gray-200">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="flex items-center justify-center gap-6">
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">
+                    R&D Department
+                  </h1>
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    UAV Innovation & Research Center
+                  </p>
+                </div>
+              </div>
 
-      {/* Header */}
-      <div className="bg-white border-b-2 border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                R&D Department
-              </h1>
-              <p className="text-sm text-gray-600 mt-1">
-                UAV Innovation & Research Center
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Search size={20} className="text-gray-600" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors relative">
-                <MessageSquare size={20} className="text-gray-600" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-gray-900 rounded-full"></span>
-              </button>
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <MoreVertical size={20} className="text-gray-600" />
-              </button>
-            </div>
-          </div>
+              {/* View Switcher and Action Buttons Container */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+                {/* View Switcher */}
+                <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-lg">
+                  {views.map((view) => (
+                    <div key={view.id} className="relative group">
+                      <button
+                        onClick={() => setActiveView(view.id)}
+                        className={`p-2 rounded transition-all whitespace-nowrap ${activeView === view.id
+                          ? 'bg-white text-black'
+                          : 'text-gray-600 hover:text-gray-900'
+                          }`}
+                        title={view.tooltip}
+                      >
+                        <view.icon size={18} />
+                      </button>
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                        {view.tooltip}
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-          {/* Navigation */}
-          <div className="flex items-center gap-2 mt-4 overflow-x-auto">
-            {views.map((view) => (
-              <button
-                key={view.id}
-                onClick={() => setActiveView(view.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
-                  activeView === view.id
-                    ? 'bg-black text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <view.icon size={18} />
-                {view.label}
-              </button>
-            ))}
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={() => setShowPrototypeDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="New Prototype"
+                  >
+                    <Plane size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Prototype</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      New Prototype
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setShowExperimentDialog(true)}
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="New Experiment"
+                  >
+                    <FlaskConical size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Experiment</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      New Experiment
+                    </div>
+                  </button>
+
+                  <button
+                    className="flex items-center justify-center sm:justify-start gap-2 px-3 py-2 border-2 border-gray-200 rounded-lg hover:bg-black hover:text-white hover:border-black transition-all duration-200 group relative"
+                    title="Export"
+                  >
+                    <Download size={18} className="flex-shrink-0" />
+                    <span className="text-sm font-medium sm:hidden">Export</span>
+                    <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      Export
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        {activeView === 'overview' && renderOverview()}
-        {activeView === 'experiments' && renderExperiments()}
-        {activeView === 'prototypes' && renderPrototypes()}
-        {activeView === 'research' && renderResearch()}
-        {activeView === 'equipment' && renderEquipment()}
+        {/* Content */}
+        <div className="flex-1 mt-8">
+          <div className="max-w-7xl mx-auto px-6 py-6">
+            {activeView === 'overview' && renderOverview()}
+            {activeView === 'experiments' && renderExperiments()}
+            {activeView === 'prototypes' && renderPrototypes()}
+            {activeView === 'research' && renderResearch()}
+            {activeView === 'equipment' && renderEquipment()}
+          </div>
+        </div>
       </div>
 
       {/* Experiment Dialog */}
@@ -1231,6 +1240,47 @@ const RnDDashboard = () => {
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.2s ease-out;
+        }
+        
+        .animate-slideUp {
+          animation: slideUp 0.4s ease-out backwards;
+        }
+
+        .animate-scaleIn {
+          animation: scaleIn 0.2s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
